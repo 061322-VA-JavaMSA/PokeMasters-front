@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Trainer } from '../trainer';
-import { TrainerService } from '../trainer.service';
+import { TrainerService } from '../services/trainer.service';
 
 @Component({
   selector: 'app-trainer',
