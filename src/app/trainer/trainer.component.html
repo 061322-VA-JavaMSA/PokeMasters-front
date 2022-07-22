@@ -1,1 +1,13 @@
-<p>trainer works!</p>
+<h2>Trainers</h2>
+<ul class="heroes">
+    <li *ngFor="let trainer of trainers">
+    <div>
+      <span class="id">{{trainer.id}}</span>
+        {{trainer | json}}
+    </div>
+  </li>
+</ul>
+<input id="pokemon-id" [(ngModel)]="id" placeholder="pokemon id">
+<button type="button" class="clear"
+          (click)="getPokemonById(id)">Find</button>
+<div>{{pokemon | json}}</div>
