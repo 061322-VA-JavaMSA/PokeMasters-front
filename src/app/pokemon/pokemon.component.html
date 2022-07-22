@@ -1,8 +1,23 @@
 <main>
-    <p>Hello from Pokemon component!</p>
+    <input type="number" id="pokeNo" #pokeNo>
+    <button (click)="getPokemon(pokeNo.value)">Find Pokemon</button>
+    <button>Add Pokemon</button>
+    <!-- <ul>
+        <li>
+            <h5>{{poke.name}}</h5>
+            <img src="{{poke.sprites.back_shiny}}">
+        </li>
+    </ul> -->
+
     <ul>
-        <li *ngFor="let poke of pokemon">
-            {{poke.nickname}}
+        <li *ngFor="let p of pokemon">
+            <h5>{{p.nickname | titlecase}}</h5>
+            <img src="{{p.spriteFront}}">
+            <ul>
+                <li *ngFor="let stat of p.stats">
+                    {{stat.name}}: {{stat.stat}}
+                </li>
+            </ul>
         </li>
     </ul>
 </main>
