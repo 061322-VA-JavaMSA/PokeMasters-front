@@ -1,26 +1,29 @@
+import { Stat } from "./stat";
+import { Trainer } from "./trainer";
+
 export class Pokemon {
     public id: number;
     public apiId: number;
+    public spriteFront: string;
+    public spriteBack: string;
     public nickname: string;
-    public hp: number;
-    public attack: number;
-    public defense: number;
-    public sAttack: number;
-    public sDefense: number;
-    public speed: number;
-    public exp: number;
     public level: number;
-    constructor(id: number, apiId: number, nickname: string, hp: number, attack: number, defense: number, sAttack: number, sDefense: number, speed: number, exp: number, level: number) {
+    public exp: number;
+    public stats: Stat[];
+    public trainer: Trainer;
+    public ot: Trainer;
+    constructor(id: number, apiId: number, spriteFront: string, spriteBack: string, nickname: string,  level: number, exp: number, stats: Stat[], trainer: Trainer, ot: Trainer) {
         this.id = id;
         this.apiId = apiId;
+
+        this.spriteFront = spriteFront;
+        this.spriteBack = spriteBack;
+        console.log(this.spriteBack);
         this.nickname = nickname;
-        this.hp = hp;
-        this.attack = attack;
-        this.defense = defense;
-        this.sAttack = sAttack;
-        this.sDefense = sDefense;
-        this.speed = speed;
-        this.exp = exp;
         this.level = level;
+        this.exp = exp;
+        this.stats = stats;
+        this.trainer = trainer;
+        this.ot = ot;
     }
 }
