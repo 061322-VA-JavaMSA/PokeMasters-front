@@ -1,9 +1,13 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { map, catchError, retry } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { Pokemon } from '../models/pokemon';
+
+const httpOptions = {
+  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+};
 
 @Injectable({
   providedIn: 'root'
@@ -24,19 +28,18 @@ export class PokemonService {
   }
 
   createPokemon(apiId: number, level: number) {
-    let body = `apiId=${apiId}&level=${level}`;
-    this.http.post(`${environment.apiUrl}/pokemon`, {
-      headers: {
-        'Content-Type': 'application/x-www-form-urlencoded'
+    this.http.post(`${environment.apiUrl}/pokemon`,
+      {
+        'apiId': apiId,
+        'level': level
       },
-      observe: 'response'
-    }).subscribe();
+      httpOptions).subscribe();
   }
 
   fetchPokemon(url: string) {
     return this.http.get(url);
   }
 
-    // let s: Stat = new Stat(-1, stat.stat.name, stat.base_stat, (Math.random() * 32), 0);
-    //   myStats.push(s);
+  // let s: Stat = new Stat(-1, stat.stat.name, stat.base_stat, (Math.random() * 32), 0);
+  //   myStats.push(s);
 }

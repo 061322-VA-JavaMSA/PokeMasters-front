@@ -4,7 +4,7 @@ import { environment } from 'src/environments/environment';
 import { Pokemon } from '../models/pokemon';
 import { Role } from '../models/role.enum';
 import { Stat } from '../models/stat';
-import { Trainer } from '../models/trainer';
+//import { Trainer } from '../models/trainer';
 import { PokemonService } from '../services/pokemon.service';
 
 @Component({
