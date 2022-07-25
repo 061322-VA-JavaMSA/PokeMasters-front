@@ -15,6 +15,7 @@ import { LoginComponent } from './login/login.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { authInterceptorProviders } from './interceptors/auth.interceptor';
+import { RegisterComponent } from './register/register.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { authInterceptorProviders } from './interceptors/auth.interceptor';
     TradeComponent,
     NavComponent,
     HomeComponent,
-    LoginComponent
+    LoginComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
@@ -35,7 +37,9 @@ import { authInterceptorProviders } from './interceptors/auth.interceptor';
     FormsModule,
     HttpClientModule
   ],
-  providers: [authInterceptorProviders],
+  providers: [
+    //authInterceptorProviders turn it on later
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
