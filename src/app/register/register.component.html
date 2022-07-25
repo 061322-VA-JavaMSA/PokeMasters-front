@@ -1,8 +1,13 @@
-<h1>Login</h1>
-<form #loginForm="ngForm" (ngSubmit)="onSubmit(loginForm)">
+<h1>Register</h1>
+<form #registerForm="ngForm" (ngSubmit)="onSubmit(registerForm)">
     <label for="username">Username</label>
     <br>
     <input type="text" name='username' id="username" ngModel>
+    <br>
+    <br>
+    <label for="displayName">Display name</label>
+    <br>
+    <input type="text" name='displayName' id="displayName" ngModel>
     <br>
     <br>
     <label for="password">Password</label>
@@ -10,5 +15,5 @@
     <input type="password" name='password' id="password" ngModel>
     <br>
     <br>
-    <button>Login</button>
+    <button>Register</button>
 </form>

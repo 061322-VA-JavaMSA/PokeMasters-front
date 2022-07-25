@@ -9,10 +9,12 @@ import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { TradeComponent } from './trade/trade.component';
 import { StorageComponent } from './storage/storage.component';
+import { RegisterComponent } from './register/register.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'login', component: LoginComponent },
+  { path: 'register', component: RegisterComponent },
   { path: 'trainer', component: TrainerComponent },
   { path: 'admin', component: AdminComponent },
   { path: 'moves', component: MovesComponent },

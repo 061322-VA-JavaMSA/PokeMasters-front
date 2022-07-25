@@ -18,6 +18,7 @@ import { authInterceptorProviders } from './interceptors/auth.interceptor';
 import { StorageComponent } from './storage/storage.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './shared/modules/material/material.module';
+import { RegisterComponent } from './register/register.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { MaterialModule } from './shared/modules/material/material.module';
     NavComponent,
     HomeComponent,
     LoginComponent,
-    StorageComponent
+    StorageComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
@@ -41,7 +43,9 @@ import { MaterialModule } from './shared/modules/material/material.module';
     BrowserAnimationsModule,
     MaterialModule
   ],
-  providers: [authInterceptorProviders],
+  providers: [
+    //authInterceptorProviders turn it on later
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
