@@ -1,1 +1,18 @@
-<p>items works!</p>
+<h1>Items</h1>
+<ul *ngIf="item == null">
+    <li *ngFor="let item of data" (click)='getItems(item["url"])'>
+        {{item["name"]}}
+    </li>
+</ul>
+
+<div *ngIf="item != null">
+    <ul>
+        <li>{{item.id}}</li>
+        <li>{{item.name}}</li>
+        <li>{{item.cost}}</li>
+        <li>{{item.effect}}</li>
+        <img src="{{item.sprite}}" />
+    </ul>
+    <button (click)="list()">Back</button>
+</div>
+

@@ -30,4 +30,5 @@ export class TrainerService {
   getPokemonById(id: number): Observable<any> {
     return this.http.get<Trainer[]>(`https://pokeapi.co/api/v2/pokemon/${id}`);
   }
+
 }
