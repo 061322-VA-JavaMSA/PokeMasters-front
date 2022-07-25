@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { map, catchError, retry } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
+import { ApiPoke } from '../models/apipoke';
 import { Pokemon } from '../models/pokemon';
 
 const httpOptions = {
@@ -27,6 +28,14 @@ export class PokemonService {
     );
   }
 
+  getPokemons() {
+    return this.http.get(`http://pokeapi.co/api/v2/pokemon?limit=10`);
+  }
+
+  getMoreData(name: string) {
+    return this.http.get(`http://pokeapi.co/api/v2/pokemon/${name}`);
+  }
+
   createPokemon(apiId: number, level: number) {
     this.http.post(`${environment.apiUrl}/pokemon`,
       {
@@ -38,6 +47,14 @@ export class PokemonService {
 
   fetchPokemon(url: string) {
     return this.http.get(url);
+  }
+
+  setData(poke: Pokemon) {
+    this.http.get(`https://pokeapi.co/api/v2/pokemon/${poke.apiId}`)
+    .subscribe((data: any) => {
+      poke.data = data;
+    });
+    poke.populate();
   }
 
   // let s: Stat = new Stat(-1, stat.stat.name, stat.base_stat, (Math.random() * 32), 0);

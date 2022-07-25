@@ -1,7 +1,4 @@
-import { StatType } from "./stattype.enum";
-
-export class Stat {
-
+export class IV {
     public id: number;
     public hp: number;
     public att: number;
@@ -9,6 +6,7 @@ export class Stat {
     public satt: number;
     public sdef: number;
     public speed: number;
+
     constructor(id: number, hp: number, att: number, def: number, satt: number, sdef: number, speed: number) {
         this.id = id;
         this.hp = hp;

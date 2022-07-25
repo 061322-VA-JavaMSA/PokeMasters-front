@@ -1,0 +1,81 @@
+@import url("https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@40,700,0,-25");
+.clickable {
+    cursor: pointer;
+}
+.view {
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    max-width: 60%;
+}
+.sidebar {
+    grid-column: 1 / span 2;
+    background-color: azure;
+    height: fit-content;
+}
+.storage {
+    grid-column: 3 / span 6;
+}
+.titlebar {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    background-color: gainsboro;
+    border-radius: 10px;
+}
+.title {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    background-color: gainsboro;
+    border-radius: 10px;
+    text-align: center;
+}
+strong {
+    padding: 10px;
+}
+.box {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    padding: 10px;
+    background-image: url('https://lh3.googleusercontent.com/Bz9708ZAzDnCTokSd0Klsw8ZgGbUu6WsTyQnCaELSolP-MOBaKYTXvdFSr9lmCqmjb53XGclD7RZI0DksDLw');
+    background-size: 100% 100%;
+    border-radius: 20px;
+}
+
+.party {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    padding: 10px;
+    border-radius: 20px;
+}
+.box .slot {
+    width: 100%;
+    padding-top: 100%;
+    border-radius: 20px;
+}
+.party .slot {
+    width: 100%;
+    padding-top: 100%;
+    border-radius: 20px;
+}
+.slot:hover {
+    cursor: pointer;
+    background-color: rgba(174, 255, 0, 0.1);
+}
+.btn {
+    border-radius: 10px;
+    background-color: aquamarine;
+    display: inline-block;
+    /* inset: 3px; */
+    padding: 5px;
+    box-shadow: 1px 2px 5px rgba(0, 0, 0, 0.3);
+}
+.left {
+    padding-left: 10px;
+}
+.right {
+    padding-right: 10px;
+}
