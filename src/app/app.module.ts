@@ -15,6 +15,9 @@ import { LoginComponent } from './login/login.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { authInterceptorProviders } from './interceptors/auth.interceptor';
+import { StorageComponent } from './storage/storage.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MaterialModule } from './shared/modules/material/material.module';
 import { RegisterComponent } from './register/register.component';
 
 @NgModule({
@@ -29,13 +32,16 @@ import { RegisterComponent } from './register/register.component';
     NavComponent,
     HomeComponent,
     LoginComponent,
+    StorageComponent,
     RegisterComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    BrowserAnimationsModule,
+    MaterialModule
   ],
   providers: [
     //authInterceptorProviders turn it on later
