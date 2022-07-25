@@ -42,4 +42,5 @@ export class PokemonService {
 
   // let s: Stat = new Stat(-1, stat.stat.name, stat.base_stat, (Math.random() * 32), 0);
   //   myStats.push(s);
+
 }
