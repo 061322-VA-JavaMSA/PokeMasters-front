@@ -8,6 +8,7 @@ import { ItemsComponent } from './items/items.component';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { TradeComponent } from './trade/trade.component';
+import { StorageComponent } from './storage/storage.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -15,6 +16,7 @@ const routes: Routes = [
   { path: 'trainer', component: TrainerComponent },
   { path: 'admin', component: AdminComponent },
   { path: 'moves', component: MovesComponent },
+  { path: 'storage', component: StorageComponent },
   { path: 'pokemon', component: PokemonComponent },
   { path: 'trade', component: TradeComponent },
   { path: 'items', component: ItemsComponent }

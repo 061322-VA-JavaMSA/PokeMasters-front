@@ -1,0 +1,53 @@
+<main>
+    <div class="view">
+        <div class="sidebar">
+            <div class="title">
+                <strong>Party</strong>
+            </div>
+            <div class="party">
+                <div class="slot" *ngFor="let poke of party"></div>
+                <div class="slot" *ngIf="party.length < 6"></div>
+            </div>
+        </div>
+        <div class="storage">
+            <div class="titlebar">
+                <mat-icon class="clickable left" (click)="prev()">arrow_back_ios</mat-icon>
+                <strong>Box 1</strong>
+                <mat-icon class="clickable right" (click)="next()">arrow_forward_ios</mat-icon>
+            </div>
+            <div class="box">
+                <div class="slot" *ngFor="let poke of box.pokemon"></div>
+                <div class="slot"></div>
+                <div class="slot"></div>
+                <div class="slot"></div>
+                <div class="slot"></div>
+                <div class="slot"></div>
+                <div class="slot"></div>
+                <div class="slot"></div>
+                <div class="slot"></div>
+                <div class="slot"></div>
+                <div class="slot"></div>
+                <div class="slot"></div>
+                <div class="slot"></div>
+                <div class="slot"></div>
+                <div class="slot"></div>
+                <div class="slot"></div>
+                <div class="slot"></div>
+                <div class="slot"></div>
+                <div class="slot"></div>
+                <div class="slot"></div>
+                <div class="slot"></div>
+                <div class="slot"></div>
+                <div class="slot"></div>
+                <div class="slot"></div>
+                <div class="slot"></div>
+                <div class="slot"></div>
+                <div class="slot"></div>
+                <div class="slot"></div>
+                <div class="slot"></div>
+                <div class="slot"></div>
+                <div class="slot"></div>
+            </div>
+        </div>
+    </div>
+</main>

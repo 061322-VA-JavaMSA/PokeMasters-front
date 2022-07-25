@@ -15,6 +15,9 @@ import { LoginComponent } from './login/login.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { authInterceptorProviders } from './interceptors/auth.interceptor';
+import { StorageComponent } from './storage/storage.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MaterialModule } from './shared/modules/material/material.module';
 
 @NgModule({
   declarations: [
@@ -27,13 +30,16 @@ import { authInterceptorProviders } from './interceptors/auth.interceptor';
     TradeComponent,
     NavComponent,
     HomeComponent,
-    LoginComponent
+    LoginComponent,
+    StorageComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    BrowserAnimationsModule,
+    MaterialModule
   ],
   providers: [authInterceptorProviders],
   bootstrap: [AppComponent]

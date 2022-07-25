@@ -1,23 +1,7 @@
 <main>
-    <input type="number" id="pokeNo" #pokeNo>
-    <button (click)="getPokemon(pokeNo.value)">Find Pokemon</button>
-    <button>Add Pokemon</button>
-    <!-- <ul>
-        <li>
-            <h5>{{poke.name}}</h5>
-            <img src="{{poke.sprites.back_shiny}}">
-        </li>
-    </ul> -->
-
-    <ul>
-        <li *ngFor="let p of pokemon">
-            <h5>{{p.nickname | titlecase}}</h5>
-            <img src="{{p.spriteFront}}">
-            <ul>
-                <li *ngFor="let stat of p.stats">
-                    {{stat.name}}: {{stat.stat}}
-                </li>
-            </ul>
-        </li>
-    </ul>
+    <div class="pokemon-grid">
+        <div class="box" *ngFor="let poke of pokemons">
+            <img [src]="poke['sprites']['versions']['generation-v']['black-white']['animated']['front_default']" alt="Pokemon">
+        </div>
+    </div>
 </main>
