@@ -1,0 +1,13 @@
+<h1>Shop</h1>
+<table>
+    <tr>
+        <th>Item Name</th>
+        <th>Cost</th>
+        <th>Effect</th>
+    </tr>
+    <tr *ngFor="let item of data">
+        <td>{{item["itemName"]}}</td>
+        <td>{{item["price"]}}</td>
+        <td>{{item["effect"]}}</td>
+    </tr>
+</table>

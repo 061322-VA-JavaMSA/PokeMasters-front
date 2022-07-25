@@ -9,6 +9,7 @@ import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { TradeComponent } from './trade/trade.component';
 import { RegisterComponent } from './register/register.component';
+import { ShopComponent } from './shop/shop.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -19,7 +20,8 @@ const routes: Routes = [
   { path: 'moves', component: MovesComponent },
   { path: 'pokemon', component: PokemonComponent },
   { path: 'trade', component: TradeComponent },
-  { path: 'items', component: ItemsComponent }
+  { path: 'items', component: ItemsComponent },
+  { path: 'shop', component: ShopComponent}
 ];
 
 @NgModule({

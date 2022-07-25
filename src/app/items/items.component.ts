@@ -9,14 +9,16 @@ import { Item } from '../models/item';
   styleUrls: ['./items.component.css']
 })
 export class ItemsComponent implements OnInit {
-
+  api = "https://pokeapi.co/api/v2/item";
+  next = "";
+  prev = "";
   data = [];
   item: any;
   constructor(private is: ItemService) { 
-    this.is.getData().subscribe((data:any) => {
-      console.warn(data);
+    this.is.getData(this.api).subscribe((data:any) => {
       this.data=data.results;
-      console.log(this.data);
+      this.next = data.next;
+      this.prev = data.previous;
     })
   }
 
@@ -25,14 +27,26 @@ export class ItemsComponent implements OnInit {
 
   getItems(url: string) {
     this.is.getItem(url).subscribe((data:any) => {
+      console.log(data);
       let i = new Item(data["id"], data["name"], data["cost"], data["effect_entries"][0]["short_effect"], data["sprites"]["default"]);
       this.item = i;
-      console.log(this.item);
     })
   }
 
   list() {
     this.item = undefined;
   }
-  
+  getData(api: string) {
+    this.is.getData(api).subscribe((data:any) => {
+      this.data=data.results;
+      this.next = data.next;
+      this.prev = data.previous;
+    });
+  }
+
+  addToShop(item: Item) {
+    this.is.addItemToShop(item).subscribe((data: any) => {
+      console.log(data);
+    })
+  }
 }
