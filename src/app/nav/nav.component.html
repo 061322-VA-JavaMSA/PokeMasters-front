@@ -5,15 +5,15 @@
         <ng-template #thenBlock>
             <button mat-stroked-button routerLink="" (click)="logout()">
                 logout
-                <mat-icon>app_registration</mat-icon>
+                <mat-icon>logout</mat-icon>
             </button>
         </ng-template>
         <ng-template #elseBlock>
-            <button mat-stroked-button routerLink="login">
+            <button mat-stroked-button routerLink="login" *ngIf="!isLoginView()">
                 login
                 <mat-icon>login</mat-icon>
             </button>
-            <button mat-stroked-button routerLink="register">
+            <button mat-stroked-button routerLink="register" *ngIf="!isRegisterView()">
                 register
                 <mat-icon>app_registration</mat-icon>
             </button>

@@ -15,11 +15,18 @@ export class NavComponent implements OnInit {
   }
 
   isLoggedIn() {
-    console.log(this.authService.isLoggedIn())
     return this.authService.isLoggedIn()
   }
 
   logout() {
     this.authService.logout()
+  }
+
+  isLoginView() {
+    return this.router.url === "/login"
+  }
+
+  isRegisterView() {
+    return this.router.url === "/register"
   }
 }
