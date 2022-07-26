@@ -1,5 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { Observable, tap } from 'rxjs';
 import { TokenStorageService, TOKEN_KEY } from './token-storage.service';
 
@@ -16,7 +17,8 @@ const httpOptions = {
 export class AuthService {
   constructor(
     private http: HttpClient,
-    private tokenService: TokenStorageService
+    private tokenService: TokenStorageService,
+    private router: Router,
   ) {}
 
   login(username: string, password: string): Observable<any> {
@@ -30,7 +32,13 @@ export class AuthService {
         httpOptions
       )
       .pipe(
-        tap((body) => this.tokenService.saveToken(body[TOKEN_KEY]))
+        tap((body) => {
+            this.tokenService.saveToken(body[TOKEN_KEY])
+            
+            if (this.isLoggedIn()) {
+              this.router.navigate(['trainer']);
+            }
+        })
       );
   }
 
