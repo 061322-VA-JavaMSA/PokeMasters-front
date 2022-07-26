@@ -34,8 +34,8 @@ import { ShopComponent } from './shop/shop.component';
     HomeComponent,
     LoginComponent,
     RegisterComponent,
-    ShopComponent
-    StorageComponent,
+    ShopComponent,
+    StorageComponent
   ],
   imports: [
     BrowserModule,
