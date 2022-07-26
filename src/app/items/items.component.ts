@@ -28,8 +28,9 @@ export class ItemsComponent implements OnInit {
   getItems(url: string) {
     this.is.getItem(url).subscribe((data:any) => {
       console.log(data);
-      let i = new Item(data["id"], data["name"], data["cost"], data["effect_entries"][0]["short_effect"], data["sprites"]["default"]);
+      let i = new Item(data["id"], data["name"], data["cost"], data["effect_entries"][0]["short_effect"], data["category"]["name"], data["sprites"]["default"]);
       this.item = i;
+      console.log(i);
     })
   }
 

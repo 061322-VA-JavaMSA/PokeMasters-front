@@ -27,7 +27,9 @@ export class ItemService {
         "apiId": item.id,
         "itemName": item.name,
         "price": item.cost,
-        "effect": item.effect
+        "effect": item.effect,
+        "type": item.type,
+        "sprite": item.sprite
       }
     , {
       headers: {
