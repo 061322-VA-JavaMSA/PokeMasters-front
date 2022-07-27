@@ -19,6 +19,7 @@ import { StorageComponent } from './storage/storage.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './shared/modules/material/material.module';
 import { RegisterComponent } from './register/register.component';
+import { FooterComponent } from './footer/footer.component';
 import { ShopComponent } from './shop/shop.component';
 
 @NgModule({
@@ -33,6 +34,7 @@ import { ShopComponent } from './shop/shop.component';
     NavComponent,
     HomeComponent,
     LoginComponent,
+    FooterComponent,
     RegisterComponent,
     ShopComponent,
     StorageComponent

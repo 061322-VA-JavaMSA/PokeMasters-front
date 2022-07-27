@@ -1,0 +1,15 @@
+.navbar {
+    justify-content: space-between
+}
+
+.home-link {
+font-size: x-large;
+}
+
+.add-margin button {
+    margin-right: 5px;
+}
+
+.active {
+    background-color: rgba(0,0,0,.2);
+}

@@ -1,10 +1,22 @@
-<nav>
-    <ul>
-        <li><a routerLink="">Home</a></li>
-        <li><a routerLink="login">Login</a></li>
-        <li><a routerLink="storage">Storage</a></li>
-        <li><a routerLink="trainer">Trainer</a></li>
-        <li><a routerLink="items">Items</a></li>
-        <li><a routerLink="pokemon">Pokemon</a></li>
-    </ul>
-</nav>
+<mat-toolbar color="primary" class="navbar">
+    <a mat-flat-button routerLink="" color="primary" class="home-link">PokeMasters</a>
+    <div class="add-margin">
+        <div *ngIf="isLoggedIn(); then thenBlock else elseBlock"></div>
+        <ng-template #thenBlock>
+            <button mat-stroked-button routerLink="" (click)="logout()">
+                logout
+                <mat-icon>logout</mat-icon>
+            </button>
+        </ng-template>
+        <ng-template #elseBlock>
+            <button mat-stroked-button routerLinkActive="active" routerLink="login">
+                login
+                <mat-icon>login</mat-icon>
+            </button>
+            <button mat-stroked-button routerLinkActive="active" routerLink="register">
+                register
+                <mat-icon>app_registration</mat-icon>
+            </button>
+        </ng-template>
+    </div>
+</mat-toolbar>

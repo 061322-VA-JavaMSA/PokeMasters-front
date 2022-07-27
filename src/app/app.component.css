@@ -1,0 +1,15 @@
+.container {
+  min-height: 100%;
+  display: grid;
+  grid-template-rows: 1fr auto;
+}
+
+.inner-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.footer {
+  grid-row-start: 2;
+  grid-row-end: 3;
+}
