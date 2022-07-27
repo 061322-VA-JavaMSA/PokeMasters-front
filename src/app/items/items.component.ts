@@ -27,10 +27,8 @@ export class ItemsComponent implements OnInit {
 
   getItems(url: string) {
     this.is.getItem(url).subscribe((data:any) => {
-      console.log(data);
       let i = new Item(data["id"], data["name"], data["cost"], data["effect_entries"][0]["short_effect"], data["category"]["name"], data["sprites"]["default"]);
       this.item = i;
-      console.log(i);
     })
   }
 
@@ -48,6 +46,10 @@ export class ItemsComponent implements OnInit {
   addToShop(item: Item) {
     this.is.addItemToShop(item).subscribe((data: any) => {
       console.log(data);
+      if(data != null) {
+        alert("Item added")
+        this.item = undefined;
+      }
     })
   }
 }

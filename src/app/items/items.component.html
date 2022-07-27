@@ -1,23 +1,33 @@
 <h1>Items</h1>
-<ul *ngIf="item == null">
+<!-- <ul *ngIf="item == null">
     <li *ngFor="let item of data" (click)='getItems(item["url"])'>
         {{item["name"]}}
     </li>
-</ul>
-<div *ngIf="item == null">
-    <button (click)="getData(prev)" *ngIf='prev != null'>Prev</button>
+</ul> -->
+<div *ngIf="item == null" id="itemsContainer">
+    <div *ngFor="let item of data" (click)='getItems(item["url"])' class="item">
+        {{item["name"] | titlecase}}
+    </div>
+</div>
+
+<div *ngIf="item == null" id="btnContainer">
+    <button (click)="getData(prev)" [disabled]='prev == null'>Prev</button>
     <button (click)="getData(next)">Next</button>
 </div>
 
-<div *ngIf="item != null">
-    <ul>
-        <li>{{item.id}}</li>
-        <li>{{item.name}}</li>
-        <li>{{item.cost}}</li>
-        <li>{{item.effect}}</li>
+<div *ngIf="item != null" id="iContainer">
+    <div id="content">
         <img src="{{item.sprite}}" />
-    </ul>
-    <button (click)="list()">Back</button>
-    <button (click)="addToShop(item)">Add Item</button>
-</div>
+        <ul>
+            <li><strong>API ID:</strong> {{item.id}}</li>
+            <li><strong>Name:</strong> {{item.name | titlecase}}</li>
+            <li><strong>Price:</strong> {{item.cost}}</li>
+            <li><strong>Effect:</strong> {{item.effect}}</li>
+        </ul>
+    </div>
+    <div id="btnContainer">
+        <button (click)="list()">Back</button>
+        <button (click)="addToShop(item)">Add Item</button>
+    </div>
 
+</div>
