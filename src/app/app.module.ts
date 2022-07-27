@@ -21,6 +21,7 @@ import { MaterialModule } from './shared/modules/material/material.module';
 import { RegisterComponent } from './register/register.component';
 import { FooterComponent } from './footer/footer.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { ShopComponent } from './shop/shop.component';
 
 @NgModule({
   declarations: [
@@ -34,10 +35,12 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     NavComponent,
     HomeComponent,
     LoginComponent,
-    StorageComponent,
+    FooterComponent,
     RegisterComponent,
     FooterComponent,
-    DashboardComponent
+    DashboardComponent,
+    ShopComponent,
+    StorageComponent
   ],
   imports: [
     BrowserModule,

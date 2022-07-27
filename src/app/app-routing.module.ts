@@ -12,6 +12,8 @@ import { StorageComponent } from './storage/storage.component';
 import { RegisterComponent } from './register/register.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { AuthGuard } from './guards/auth.guard';
+import { ShopComponent } from './shop/shop.component';
+
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -24,7 +26,8 @@ const routes: Routes = [
   { path: 'pokemon', component: PokemonComponent },
   { path: 'trade', component: TradeComponent },
   { path: 'items', component: ItemsComponent },
-  { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] }
+  { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
+  { path: 'shop', component: ShopComponent}
 ];
 
 @NgModule({
