@@ -19,7 +19,8 @@ import { StorageComponent } from './storage/storage.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './shared/modules/material/material.module';
 import { RegisterComponent } from './register/register.component';
-import { PmforDirective } from './directives/pmfor.directive';
+import { FooterComponent } from './footer/footer.component';
+import { ShopComponent } from './shop/shop.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,10 @@ import { PmforDirective } from './directives/pmfor.directive';
     LoginComponent,
     StorageComponent,
     RegisterComponent,
-    PmforDirective
+    FooterComponent,
+    RegisterComponent,
+    ShopComponent,
+    StorageComponent
   ],
   imports: [
     BrowserModule,

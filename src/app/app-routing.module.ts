@@ -10,18 +10,20 @@ import { LoginComponent } from './login/login.component';
 import { TradeComponent } from './trade/trade.component';
 import { StorageComponent } from './storage/storage.component';
 import { RegisterComponent } from './register/register.component';
+import { ShopComponent } from './shop/shop.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'login', component: LoginComponent },
-  { path: 'register', component: RegisterComponent },
-  { path: 'trainer', component: TrainerComponent },
+  { path: 'register', component: RegisterComponent},
+  { path: 'trainer', component: TrainerComponent},
   { path: 'admin', component: AdminComponent },
   { path: 'moves', component: MovesComponent },
   { path: 'storage', component: StorageComponent },
   { path: 'pokemon', component: PokemonComponent },
   { path: 'trade', component: TradeComponent },
-  { path: 'items', component: ItemsComponent }
+  { path: 'items', component: ItemsComponent },
+  { path: 'shop', component: ShopComponent}
 ];
 
 @NgModule({

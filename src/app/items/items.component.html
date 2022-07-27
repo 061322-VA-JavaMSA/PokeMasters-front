@@ -4,6 +4,10 @@
         {{item["name"]}}
     </li>
 </ul>
+<div *ngIf="item == null">
+    <button (click)="getData(prev)" *ngIf='prev != null'>Prev</button>
+    <button (click)="getData(next)">Next</button>
+</div>
 
 <div *ngIf="item != null">
     <ul>
@@ -14,5 +18,6 @@
         <img src="{{item.sprite}}" />
     </ul>
     <button (click)="list()">Back</button>
+    <button (click)="addToShop(item)">Add Item</button>
 </div>
 

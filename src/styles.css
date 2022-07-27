@@ -6,3 +6,8 @@ html, body {
 }
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+/* use for adding styles to components created by router-outlet */
+router-outlet + * {
+    flex-grow: 1;
+}

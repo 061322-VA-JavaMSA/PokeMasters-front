@@ -1,19 +1,20 @@
-<h1>Register</h1>
-<form #registerForm="ngForm" (ngSubmit)="onSubmit(registerForm)">
-    <label for="username">Username</label>
-    <br>
-    <input type="text" name='username' id="username" ngModel>
-    <br>
-    <br>
-    <label for="displayName">Display name</label>
-    <br>
-    <input type="text" name='displayName' id="displayName" ngModel>
-    <br>
-    <br>
-    <label for="password">Password</label>
-    <br>
-    <input type="password" name='password' id="password" ngModel>
-    <br>
-    <br>
-    <button>Register</button>
-</form>
+<div class="register-container">
+    <div>
+        <h1>Register for an account</h1>
+        <form class="form-container" #registerForm="ngForm" (ngSubmit)="onSubmit(registerForm)">
+            <mat-form-field appearance="outline">
+                <mat-label>Username</mat-label>
+                <input name="username" matInput placeholder="" ngModel>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Display Name</mat-label>
+                <input name="displayName" matInput placeholder="" ngModel>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Password</mat-label>
+                <input name="password" type="password" matInput placeholder="" ngModel>
+            </mat-form-field>
+            <button mat-raised-button color="primary">Register</button>
+        </form>
+    </div>
+</div>
