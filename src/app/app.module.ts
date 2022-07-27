@@ -35,6 +35,8 @@ import { ShopComponent } from './shop/shop.component';
     NavComponent,
     HomeComponent,
     LoginComponent,
+    StorageComponent,
+    RegisterComponent,
     FooterComponent,
     RegisterComponent,
     FooterComponent,
