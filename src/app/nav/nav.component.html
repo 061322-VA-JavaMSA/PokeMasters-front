@@ -3,18 +3,22 @@
     <div class="add-margin">
         <div *ngIf="isLoggedIn(); then thenBlock else elseBlock"></div>
         <ng-template #thenBlock>
+            <button mat-stroked-button routerLinkActive="active" routerLink="dashboard">
+                Dashboard
+                <mat-icon>dashboard</mat-icon>
+            </button>
             <button mat-stroked-button routerLink="" (click)="logout()">
-                logout
+                Logout
                 <mat-icon>logout</mat-icon>
             </button>
         </ng-template>
         <ng-template #elseBlock>
             <button mat-stroked-button routerLinkActive="active" routerLink="login">
-                login
+                Login
                 <mat-icon>login</mat-icon>
             </button>
             <button mat-stroked-button routerLinkActive="active" routerLink="register">
-                register
+                Register
                 <mat-icon>app_registration</mat-icon>
             </button>
         </ng-template>
