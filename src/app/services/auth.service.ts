@@ -36,7 +36,7 @@ export class AuthService {
             this.tokenService.saveToken(body[TOKEN_KEY])
             
             if (this.isLoggedIn()) {
-              this.router.navigate(['trainer']);
+              this.router.navigate(['dashboard']);
             }
         })
       );

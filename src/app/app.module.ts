@@ -20,6 +20,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './shared/modules/material/material.module';
 import { RegisterComponent } from './register/register.component';
 import { FooterComponent } from './footer/footer.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 import { ShopComponent } from './shop/shop.component';
 
 @NgModule({
@@ -38,6 +39,8 @@ import { ShopComponent } from './shop/shop.component';
     RegisterComponent,
     FooterComponent,
     RegisterComponent,
+    FooterComponent,
+    DashboardComponent,
     ShopComponent,
     StorageComponent
   ],
