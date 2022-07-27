@@ -5,28 +5,18 @@ import { AuthService } from '../services/auth.service';
 @Component({
   selector: 'app-nav',
   templateUrl: './nav.component.html',
-  styleUrls: ['./nav.component.css']
+  styleUrls: ['./nav.component.css'],
 })
 export class NavComponent implements OnInit {
+  constructor(private authService: AuthService, private router: Router) {}
 
-  constructor(private authService: AuthService, private router: Router) { }
-
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   isLoggedIn() {
-    return this.authService.isLoggedIn()
+    return this.authService.isLoggedIn();
   }
 
   logout() {
-    this.authService.logout()
-  }
-
-  isLoginView() {
-    return this.router.url === "/login"
-  }
-
-  isRegisterView() {
-    return this.router.url === "/register"
+    this.authService.logout();
   }
 }

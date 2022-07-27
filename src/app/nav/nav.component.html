@@ -9,11 +9,11 @@
             </button>
         </ng-template>
         <ng-template #elseBlock>
-            <button mat-stroked-button routerLink="login" *ngIf="!isLoginView()">
+            <button mat-stroked-button routerLinkActive="active" routerLink="login">
                 login
                 <mat-icon>login</mat-icon>
             </button>
-            <button mat-stroked-button routerLink="register" *ngIf="!isRegisterView()">
+            <button mat-stroked-button routerLinkActive="active" routerLink="register">
                 register
                 <mat-icon>app_registration</mat-icon>
             </button>
