@@ -4,17 +4,21 @@
         <form class="form-container" #registerForm="ngForm" (ngSubmit)="onSubmit(registerForm)">
             <mat-form-field appearance="outline">
                 <mat-label>Username</mat-label>
-                <input name="username" matInput placeholder="" ngModel>
+                <input name="username" matInput placeholder="" required ngModel>
+                <mat-error *ngIf="registerForm.controls['username']?.errors?.['required']">please enter a username</mat-error>
             </mat-form-field>
             <mat-form-field appearance="outline">
                 <mat-label>Display Name</mat-label>
-                <input name="displayName" matInput placeholder="" ngModel>
+                <input name="displayName" matInput placeholder="" required ngModel>
+                <mat-error *ngIf="registerForm.controls['displayName']?.errors?.['required']">please enter a display name</mat-error>
             </mat-form-field>
             <mat-form-field appearance="outline">
                 <mat-label>Password</mat-label>
-                <input name="password" type="password" matInput placeholder="" ngModel>
+                <input name="password" type="password" matInput placeholder="" required ngModel>
+                <mat-error *ngIf="registerForm.controls['password']?.errors?.['required']">please enter a password</mat-error>
             </mat-form-field>
-            <button mat-raised-button color="primary">Register</button>
+            <button mat-raised-button color="primary" [disabled]="registerForm.invalid">Register</button>
         </form>
+        <div *ngIf="errorInfo.error" class="error">{{errorInfo.message}}</div>
     </div>
 </div>
