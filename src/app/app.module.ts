@@ -19,6 +19,7 @@ import { StorageComponent } from './storage/storage.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './shared/modules/material/material.module';
 import { RegisterComponent } from './register/register.component';
+import { ShopComponent } from './shop/shop.component';
 
 @NgModule({
   declarations: [
@@ -32,8 +33,9 @@ import { RegisterComponent } from './register/register.component';
     NavComponent,
     HomeComponent,
     LoginComponent,
-    StorageComponent,
-    RegisterComponent
+    RegisterComponent,
+    ShopComponent,
+    StorageComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,16 @@
+<h1>Shop</h1>
+<table>
+    <tr>
+        <th></th>
+        <th>Item Name</th>
+        <th>Cost</th>
+        <th>Effect</th>
+    </tr>
+    <tr *ngFor="let item of data">
+        <td><img src='{{item["sprite"]}}' /></td>
+        <td>{{item["itemName"]}}</td>
+        <td>{{item["price"]}}</td>
+        <td>{{item["effect"]}}</td>
+        <td><button>Buy</button></td>
+    </tr>
+</table>
