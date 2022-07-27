@@ -43,6 +43,10 @@ strong {
     background-size: 100% 100%;
     border-radius: 20px;
 }
+.slot img {
+    margin-top: -100%;
+    object-fit: cover;
+}
 
 .party {
     display: grid;
@@ -51,16 +55,21 @@ strong {
     padding: 10px;
     border-radius: 20px;
 }
-.box .slot {
+.slot {
+    display: flex;
+    justify-content: center;
     width: 100%;
     padding-top: 100%;
     border-radius: 20px;
 }
-.party .slot {
-    width: 100%;
-    padding-top: 100%;
-    border-radius: 20px;
-}
+
+/* .content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0; 
+    right: 0;
+} */
 .slot:hover {
     cursor: pointer;
     background-color: rgba(174, 255, 0, 0.1);
