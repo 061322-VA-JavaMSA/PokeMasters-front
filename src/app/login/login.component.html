@@ -4,13 +4,16 @@
         <form class="form-container" #loginForm="ngForm" (ngSubmit)="onSubmit(loginForm)">
             <mat-form-field appearance="outline">
                 <mat-label>Username</mat-label>
-                <input name="username" matInput placeholder="" ngModel>
+                <input name="username" matInput placeholder="" required ngModel>
+                <mat-error *ngIf="loginForm.controls['username']?.errors?.['required']">please enter your username</mat-error>
             </mat-form-field>
             <mat-form-field appearance="outline">
                 <mat-label>Password</mat-label>
-                <input name="password" type="password" matInput placeholder="" ngModel>
+                <input name="password" type="password" matInput placeholder="" required ngModel>
+                <mat-error *ngIf="loginForm.controls['password']?.errors?.['required']">please enter your password</mat-error>
             </mat-form-field>
-            <button mat-raised-button color="primary">login</button>
+            <button mat-raised-button color="primary" [disabled]="loginForm.invalid">login</button>
         </form>
+        <div *ngIf="errorInfo.error" class="error">{{errorInfo.message}}</div>
     </div>
 </div>
