@@ -1,7 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { environment } from 'src/environments/environment';
-import { ApiPoke } from '../models/apipoke';
 import { Pokemon } from '../models/pokemon';
 import { Role } from '../models/role.enum';
 import { Stat } from '../models/stat';
@@ -15,6 +14,7 @@ import { PokemonService } from '../services/pokemon.service';
 })
 export class PokemonComponent implements OnInit {
   pokemons: any[] = [];
+  pokemon!: Pokemon;
 
   constructor(private pokeServ: PokemonService, private http: HttpClient) {
   }
@@ -34,6 +34,10 @@ export class PokemonComponent implements OnInit {
     // this.pokeServ.createPokemon(4, 5);
     // this.pokeServ.createPokemon(7, 5);
     // this.getAllPokemon();
+    this.pokeServ.getPokemon(1).subscribe(p => {
+      this.pokemon = p;
+      console.log(p);
+    })
   }
 
 

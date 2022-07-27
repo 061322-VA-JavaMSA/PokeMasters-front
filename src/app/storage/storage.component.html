@@ -5,7 +5,8 @@
                 <strong>Party</strong>
             </div>
             <div class="party">
-                <div class="slot" *ngFor="let poke of party"></div>
+                <div class="slot" *ngFor="let poke of party">
+                </div>
                 <div class="slot" *ngIf="party.length < 6"></div>
             </div>
         </div>
@@ -16,37 +17,10 @@
                 <mat-icon class="clickable right" (click)="next()">arrow_forward_ios</mat-icon>
             </div>
             <div class="box">
-                <div class="slot" *ngFor="let poke of box.pokemon"></div>
-                <div class="slot"></div>
-                <div class="slot"></div>
-                <div class="slot"></div>
-                <div class="slot"></div>
-                <div class="slot"></div>
-                <div class="slot"></div>
-                <div class="slot"></div>
-                <div class="slot"></div>
-                <div class="slot"></div>
-                <div class="slot"></div>
-                <div class="slot"></div>
-                <div class="slot"></div>
-                <div class="slot"></div>
-                <div class="slot"></div>
-                <div class="slot"></div>
-                <div class="slot"></div>
-                <div class="slot"></div>
-                <div class="slot"></div>
-                <div class="slot"></div>
-                <div class="slot"></div>
-                <div class="slot"></div>
-                <div class="slot"></div>
-                <div class="slot"></div>
-                <div class="slot"></div>
-                <div class="slot"></div>
-                <div class="slot"></div>
-                <div class="slot"></div>
-                <div class="slot"></div>
-                <div class="slot"></div>
-                <div class="slot"></div>
+                <div class="slot" *ngFor="let poke of pokemon">
+                    <img *ngIf="poke"
+                        [src]="poke['data']['sprites']['versions']['generation-v']['black-white']['front_shiny']">
+                </div>
             </div>
         </div>
     </div>
