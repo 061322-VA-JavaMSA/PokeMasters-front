@@ -5,23 +5,51 @@
                 <strong>Party</strong>
             </div>
             <div class="party">
-                <div class="slot" *ngFor="let poke of party">
+                <div class="slot" *ngFor="let poke of pPokes; let i = index" (click)="swap ? swapParty(i) : selectPokemon(poke)">
+                    <img [src]="poke.sprite.front">
                 </div>
-                <div class="slot" *ngIf="party.length < 6"></div>
+                <div class="slot" *ngIf="pPokes.length < 6" (click)="selected ? placeParty() : {}"></div>
+            </div>
+            <div *ngIf="selected && !swap">
+                <h4>{{selected.nickname || selected.name | titlecase}}</h4>
+                <img [src]="selected.sprite.front_a">
+                <p>
+                    Lv: {{selected.level}}
+                    <br>
+                    Type(s): {{selected.type1 | titlecase}}{{selected.type2 != '' ? ((', ' + selected.type2) | titlecase) : ''}}
+                    <br>
+                    Weight: {{selected.weight}}
+                    <br>
+                    Height: {{selected.height}}
+                    <br>
+                    HP: {{selected.hp}}/{{selected.stats.hp}}
+                    <br>
+                    ATT: {{selected.stats.att}}
+                    <br>
+                    DEF: {{selected.stats.def}}
+                    <br>
+                    SP ATT: {{selected.stats.satt}}
+                    <br>
+                    SP DEF: {{selected.stats.sdef}}
+                    <br>
+                    SPEED: {{selected.stats.speed}}
+                </p>
             </div>
         </div>
         <div class="storage">
             <div class="titlebar">
                 <mat-icon class="clickable left" (click)="prev()">arrow_back_ios</mat-icon>
-                <strong>Box 1</strong>
+                <strong>{{storage.boxes[storage.activeIndex].name}}</strong>
                 <mat-icon class="clickable right" (click)="next()">arrow_forward_ios</mat-icon>
             </div>
             <div class="box">
-                <div class="slot" *ngFor="let poke of pokemon">
+                <div class="slot" *ngFor="let poke of box; let i = index" (click)="swap ? swapBox(i) : selectPokemon(poke)">
                     <img *ngIf="poke"
-                        [src]="poke['data']['sprites']['versions']['generation-v']['black-white']['front_shiny']">
+                        [src]="poke.sprite.front">
                 </div>
             </div>
         </div>
     </div>
+    <button (click)="addPokemon()">Add Pokemon</button>
+    <button (click)="selected ? {} : switchMode();">{{label}}</button>
 </main>
