@@ -1,5 +1,5 @@
 <mat-toolbar color="primary" class="navbar">
-    <a mat-flat-button routerLink="" color="primary" class="home-link">PokeMasters</a>
+    <a routerLink="" color="primary" class="home-link"><img src="../../assets/images/PokeMasters_logo.png" id='pokemasters_logo' alt=""></a>
     <div class="add-margin">
         <div *ngIf="isLoggedIn(); then thenBlock else elseBlock"></div>
         <ng-template #thenBlock>
