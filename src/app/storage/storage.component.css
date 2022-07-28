@@ -45,7 +45,7 @@ strong {
 }
 .slot img {
     margin-top: -100%;
-    object-fit: cover;
+    object-fit: contain;
 }
 
 .party {
@@ -71,7 +71,7 @@ strong {
     right: 0;
 } */
 .slot:hover {
-    cursor: pointer;
+    cursor: grab;
     background-color: rgba(174, 255, 0, 0.1);
 }
 .btn {
