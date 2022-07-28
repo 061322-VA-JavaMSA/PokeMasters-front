@@ -3,7 +3,7 @@
 }
 
 .home-link {
-font-size: x-large;
+    font-size: x-large;
 }
 
 .add-margin button {
@@ -12,4 +12,10 @@ font-size: x-large;
 
 .active {
     background-color: rgba(0,0,0,.2);
+}
+
+#pokemasters_logo {
+    width: 200px;
+    display: flex;
+    align-items: center;
 }
