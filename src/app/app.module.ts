@@ -22,6 +22,10 @@ import { RegisterComponent } from './register/register.component';
 import { FooterComponent } from './footer/footer.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ShopComponent } from './shop/shop.component';
+import { ActionRequiredGuard } from './guards/action-required.guard';
+import { TradeSelectComponent } from './trade-select/trade-select.component';
+import { TradeSearchComponent } from './trade-search/trade-search.component';
+import { ModalComponent } from './modal/modal.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +46,10 @@ import { ShopComponent } from './shop/shop.component';
     FooterComponent,
     DashboardComponent,
     ShopComponent,
-    StorageComponent
+    StorageComponent,
+    TradeSelectComponent,
+    TradeSearchComponent,
+    ModalComponent
   ],
   imports: [
     BrowserModule,
@@ -54,6 +61,7 @@ import { ShopComponent } from './shop/shop.component';
   ],
   providers: [
     //authInterceptorProviders turn it on later
+    ActionRequiredGuard
   ],
   bootstrap: [AppComponent]
 })
