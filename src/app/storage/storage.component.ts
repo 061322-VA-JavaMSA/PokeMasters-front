@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+
+import { Component, HostListener, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { ComponentCanDeactivate } from '../guards/action-required.guard';
 import { Party } from '../models/party';
 import { Pokemon } from '../models/pokemon';
 import { Storage } from '../models/storage';
@@ -9,7 +12,12 @@ import { PokemonService } from '../services/pokemon.service';
   templateUrl: './storage.component.html',
   styleUrls: ['./storage.component.css', '../../assets/style/icon.css', '../../assets/style/css2.css']
 })
-export class StorageComponent implements OnInit {
+export class StorageComponent implements OnInit, ComponentCanDeactivate {
+  @HostListener('document:mousemove', ['$event'])
+  onMousemove(event: any) {
+    this.mouseX = event.pageX;
+    this.mouseY = event.pageY;
+  }
 
   storage!: Storage;
   party!: Party;
@@ -18,13 +26,31 @@ export class StorageComponent implements OnInit {
   selected!: Pokemon;
   swap: boolean = false;
   label: string = 'Select';
+  pIndex: number = -1;
+  bIndex: number = -1;
+  mouseX: number = 0;
+  mouseY: number = 0;
 
-  constructor(private ps: PokemonService) {
-  }
+  constructor(private ps: PokemonService) {}
 
   ngOnInit(): void {
     this.getParty();
     this.getStorage();
+  }
+
+  canDeactivate(): Observable<boolean> | boolean {
+    if (this.swap && this.selected) {
+      return false;
+    }
+    return true;
+  }
+
+  // @HostListener allows us to also guard against browser refresh, close, etc.
+  @HostListener('window:beforeunload', ['$event'])
+  unloadNotification($event: any) {
+    if (!this.canDeactivate()) {
+      $event.returnValue = "WARNING: You have not finished moving Pokemon. Proceeding could result in lost data. Press cancel to go back.";
+    }
   }
 
   selectPokemon(p: Pokemon) {
@@ -32,9 +58,40 @@ export class StorageComponent implements OnInit {
   }
 
   switchMode() {
+    if (!this.swap) {
+      this.selected = null as unknown as Pokemon;
+    }
     this.swap = !this.swap;
     this.label = this.swap ? 'Swap' : 'Select'
   }
+
+  /*
+  grabBox(index: number) {
+    this.bIndex = index;
+    this.selected = this.box[index];
+    delete this.box[index];
+  }
+
+  grabParty(index: number) {
+    this.pIndex = index;
+    this.selected = this.pPokes[index];
+    delete this.pPokes[index];
+  }
+
+  placeBox(index: number) {
+    this.box[this.bIndex] = this.box[index];
+    this.box[index] = this.selected;
+  }
+
+  placeParty(index: number) {
+    if (index > this.pPokes.length) {
+      this.pPokes.push(this.selected);
+    } else {
+      this.pPokes[this.pIndex] = this.pPokes[index];
+      this.pPokes[index] = this.selected;
+    }
+  }
+  */
 
   swapBox(index: number) {
     let temp = this.selected;
@@ -67,6 +124,7 @@ export class StorageComponent implements OnInit {
   placeParty() {
     this.pPokes.push(this.selected);
     this.selected = null as unknown as Pokemon;
+    this.saveParty();
   }
 
   loadBox() {

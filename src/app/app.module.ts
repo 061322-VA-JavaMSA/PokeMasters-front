@@ -22,6 +22,7 @@ import { RegisterComponent } from './register/register.component';
 import { FooterComponent } from './footer/footer.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ShopComponent } from './shop/shop.component';
+import { ActionRequiredGuard } from './guards/action-required.guard';
 import { SidenavComponent } from './sidenav/sidenav.component';
 
 @NgModule({
@@ -56,6 +57,7 @@ import { SidenavComponent } from './sidenav/sidenav.component';
   ],
   providers: [
     //authInterceptorProviders turn it on later
+    ActionRequiredGuard
   ],
   bootstrap: [AppComponent]
 })
