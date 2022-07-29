@@ -1,0 +1,52 @@
+<mat-sidenav-container>
+    <mat-sidenav mode="side" [opened]="canShow()">
+        <div class="container">
+            <img class="avatar" src="https://www.nicepng.com/png/detail/201-2011813_pokemon-trainer-red-render-by-oxeyclean-d4xlibs-1.png" />
+    
+            <h4 class="username">{{getPricipal() | uppercase}}</h4>
+            <p class="role">Role: {{getPricipalRole()}}</p>
+        </div>
+        <mat-divider></mat-divider>
+
+        <div class="links-container">
+            <div *ngIf="getPricipalRole() === 'TRAINER'; then thenBlock else elseBlock"></div>
+            <ng-template #thenBlock>
+                <button mat-button routerLinkActive="active" routerLink="trainer">
+                    <mat-icon>catching_pokemon</mat-icon>
+                    <span>Trainers</span>
+                </button>
+                <button mat-button routerLinkActive="active" routerLink="moves">
+                    <mat-icon>catching_pokemon</mat-icon>
+                    <span>Moves</span>
+                </button>
+                <button mat-button routerLinkActive="active" routerLink="storage">
+                    <mat-icon>catching_pokemon</mat-icon>
+                    <span>Storage</span>
+                </button>
+                <button mat-button routerLinkActive="active" routerLink="pokemon">
+                    <mat-icon>catching_pokemon</mat-icon>
+                    <span>Pokemon</span>
+                </button>
+                <button mat-button routerLinkActive="active" routerLink="trade">
+                    <mat-icon>catching_pokemon</mat-icon>
+                    <span>Trade</span>
+                </button>
+                <button mat-button routerLinkActive="active" routerLink="items">
+                    <mat-icon>catching_pokemon</mat-icon>
+                    <span>Items</span>
+                </button>
+                <button mat-button routerLinkActive="active" routerLink="shop">
+                    <mat-icon>catching_pokemon</mat-icon>
+                    <span>Shop</span>
+                </button>
+            </ng-template>
+            <ng-template #elseBlock>
+                Add links here for ADMIN users
+            </ng-template>
+        </div>
+        
+    </mat-sidenav>
+    <mat-sidenav-content>
+        <ng-content></ng-content>
+    </mat-sidenav-content>
+</mat-sidenav-container>

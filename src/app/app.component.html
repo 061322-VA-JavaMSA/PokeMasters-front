@@ -1,7 +1,9 @@
 <div class="container">
     <div class="inner-container">
         <app-nav></app-nav>
-        <router-outlet></router-outlet>
+        <app-sidenav [ngStyle]="{'flex-grow': 1}">
+            <router-outlet></router-outlet>
+        </app-sidenav>
     </div>
     <app-footer class="footer"></app-footer>
 </div>

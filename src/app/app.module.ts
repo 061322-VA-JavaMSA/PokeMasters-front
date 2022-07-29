@@ -23,9 +23,7 @@ import { FooterComponent } from './footer/footer.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ShopComponent } from './shop/shop.component';
 import { ActionRequiredGuard } from './guards/action-required.guard';
-import { TradeSelectComponent } from './trade-select/trade-select.component';
-import { TradeSearchComponent } from './trade-search/trade-search.component';
-import { ModalComponent } from './modal/modal.component';
+import { SidenavComponent } from './sidenav/sidenav.component';
 
 @NgModule({
   declarations: [
@@ -47,9 +45,7 @@ import { ModalComponent } from './modal/modal.component';
     DashboardComponent,
     ShopComponent,
     StorageComponent,
-    TradeSelectComponent,
-    TradeSearchComponent,
-    ModalComponent
+    SidenavComponent
   ],
   imports: [
     BrowserModule,
