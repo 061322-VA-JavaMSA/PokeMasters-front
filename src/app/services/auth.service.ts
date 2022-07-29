@@ -50,8 +50,14 @@ export class AuthService {
     return Math.floor(new Date().getTime() / 1000) < this.getExpiration();
   }
 
-  isLoggedOut() {
-    return !this.isLoggedIn();
+  getPrincipal(){
+    let token = this.tokenService.getDecodedAccessToken();
+    return token?.sub
+  }
+
+  getPrincipalRole(){
+    let token = this.tokenService.getDecodedAccessToken();
+    return token?.roles[0]
   }
 
   getExpiration() {

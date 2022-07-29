@@ -24,6 +24,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { ShopComponent } from './shop/shop.component';
 import { ActionRequiredGuard } from './guards/action-required.guard';
 import { ModalModule } from './modal/modal.module';
+import { SidenavComponent } from './sidenav/sidenav.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,8 @@ import { ModalModule } from './modal/modal.module';
     FooterComponent,
     DashboardComponent,
     ShopComponent,
-    StorageComponent
+    StorageComponent,
+    SidenavComponent
   ],
   imports: [
     BrowserModule,
