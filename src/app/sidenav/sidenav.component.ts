@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-sidenav',
@@ -8,13 +9,21 @@ import { Router } from '@angular/router';
 })
 export class SidenavComponent implements OnInit {
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private authService: AuthService) { }
 
   ngOnInit(): void {
   }
 
   canShow() {
     return !(['/', '/login', '/register'].includes(this.router.url))
+  }
+
+  getPricipal() {
+    return this.authService.getPrincipal()
+  }
+
+  getPricipalRole() {
+    return this.authService.getPrincipalRole()
   }
 
 }

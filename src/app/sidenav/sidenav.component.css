@@ -1,8 +1,51 @@
 mat-sidenav {
     width: 200px;
-    background-color: aliceblue;
+    background-color: lightblue;
 }
 
 mat-sidenav-container {
     height: 100%;
+}
+
+.container {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.links-container {
+    display: flex;
+    align-items: start;
+    flex-direction: column;
+}
+
+mat-icon {
+    margin-right: 8px;
+}
+
+.avatar {
+    margin-top: 16px;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+}
+
+.username {
+    margin-top: 10px;
+    margin-bottom: 0px;
+    font-weight: normal;
+}
+
+.role {
+    font-size: 0.7rem;
+}
+
+mat-divider {
+    margin-top: 16px;
+    margin-bottom: 16px;
+    background-color: rgba(144, 157, 213, 0.5);
+}
+
+.active {
+    background-color: rgba(0,0,0,.2);
 }
