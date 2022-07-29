@@ -22,6 +22,7 @@ import { RegisterComponent } from './register/register.component';
 import { FooterComponent } from './footer/footer.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ShopComponent } from './shop/shop.component';
+import { SidenavComponent } from './sidenav/sidenav.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import { ShopComponent } from './shop/shop.component';
     FooterComponent,
     DashboardComponent,
     ShopComponent,
-    StorageComponent
+    StorageComponent,
+    SidenavComponent
   ],
   imports: [
     BrowserModule,
