@@ -1,1 +1,104 @@
-<p>trade works!</p>
+<button (click)="openModal('newTradeModal')">Open modal</button>
+
+<main>
+    <div id="trainerTrades">
+        <div class="title">
+            <strong>My Trades</strong>
+        </div>
+        <div class="grid">
+            <div *ngFor="let trade of tTrades" class="trade">
+                <img [src]="trade.status == 'COMPLETED' ? trade.offered.sprite.front : trade.listed.sprite.front">
+
+            </div>
+            <div class="trade"><p>this is a div</p></div>
+            <div class="trade"><p>this is a div</p></div>
+            <div class="trade"><p>this is a div</p></div>
+        </div>
+    </div>
+    <div id="otherTrades">
+        <div class="title">
+            <strong>Browse Trades</strong>
+        </div>
+        <div class="grid">
+            <div *ngFor="let trade of oTrades" class="trade"><p>this is a div</p></div>
+            <div class="trade"><p>this is a div</p></div>
+            <div class="trade"><p>this is a div</p></div>
+            <div class="trade"><p>this is a div</p></div>
+            <div class="trade"><p>this is a div</p></div>
+            <div class="trade"><p>this is a div</p></div>
+            <div class="trade"><p>this is a div</p></div>
+            <div class="trade"><p>this is a div</p></div>
+            <div class="trade"><p>this is a div</p></div>
+            <div class="trade"><p>this is a div</p></div>
+            <div class="trade"><p>this is a div</p></div>
+            <div class="trade"><p>this is a div</p></div>
+        </div>
+    </div>
+</main>
+
+<jw-modal id="newTradeModal">
+    <div slot="head">
+        <strong>Select a Pokemon</strong>
+    </div>
+    <div slot="content">
+        <div class="view">
+            <div class="leftsidebar">
+                <div class="title">
+                    <strong>Party</strong>
+                </div>
+                <div class="party">
+                    <div class="slot" *ngFor="let poke of party.pokemon; let i = index" (click)="{}">
+                        <img [src]="poke.sprite.front">
+                    </div>
+                </div>
+                <div *ngIf="selected">
+                    <h1>{{selected.nickname || selected.name | titlecase}}</h1>
+                    <img [src]="selected.sprite.front_a">
+                    <p>
+                        <b>Lv:</b> {{selected.level}}
+                        <br>
+                        <b>Type:</b> {{selected.type1 | titlecase}}{{selected.type2 != '' ? ((', ' + selected.type2) |
+                        titlecase) : ''}}
+                        <br>
+                        <b>Weight:</b> {{selected.weight}}
+                        <br>
+                        <b>Height:</b> {{selected.height}}
+                        <br>
+                        <b>HP:</b> {{selected.hp}}/{{selected.stats.hp}}
+                        <br>
+                        <b>Att:</b> {{selected.stats.att}}
+                        <br>
+                        <b>Def:</b> {{selected.stats.def}}
+                        <br>
+                        <b>Sp Att:</b> {{selected.stats.satt}}
+                        <br>
+                        <b>Sp Def:</b> {{selected.stats.sdef}}
+                        <br>
+                        <b>Speed:</b> {{selected.stats.speed}}
+                    </p>
+                </div>
+            </div>
+            <div class="storage">
+                <div class="titlebar">
+                    <mat-icon class="clickable left" (click)="prev()">arrow_back_ios</mat-icon>
+                    <strong>{{storage.boxes[storage.activeIndex].name}}</strong>
+                    <mat-icon class="clickable right" (click)="next()">arrow_forward_ios</mat-icon>
+                </div>
+                <div class="box">
+                    <div class="slot" *ngFor="let poke of storage.boxes[storage.activeIndex].pokemon; let i = index"
+                        (click)="{}">
+                        <img class="contain" *ngIf="poke" [src]="poke.sprite.front">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div slot="foot">
+            <button (click)="closeModal('newTradeModal')">Close</button>
+        </div>
+    </div>
+</jw-modal>
+<jw-modal id="offerTradeModal">
+    <h1>Select a Pokemon</h1>
+    <p>This is some modal content.</p>
+    <button (click)="closeModal('offerTradeModal')">Close</button>
+</jw-modal>
