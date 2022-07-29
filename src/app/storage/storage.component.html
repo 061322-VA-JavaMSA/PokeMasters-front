@@ -52,21 +52,10 @@
                 </div>
             </div>
         </div>
-        <div class="rightsidebar">
-            <div class="title">
-                <strong>Trade</strong>
-            </div>
-            <div class="party">
-                <!-- <div class="slot" *ngFor="let poke of pPokes; let i = index"
-                    (click)="swap ? swapParty(i) : selectPokemon(poke)">
-                    <img [src]="poke.sprite.front">
-                </div> -->
-                <div class="slot" *ngIf="true"></div>
-            </div>
-        </div>
         <img *ngIf="selected && swap" class="drag" [src]="selected.sprite.front_a" [ngStyle]="{'left': mouseX+'px', 'top': mouseY+'px'}">
     </div>
 </main>
-
+<div id="btnContainer">
 <button (click)="addPokemon()">Add Pokemon</button>
 <button (click)="swap && selected ? {} : switchMode();">{{label}}</button>
+</div>
