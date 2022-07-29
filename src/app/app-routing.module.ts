@@ -12,6 +12,7 @@ import { StorageComponent } from './storage/storage.component';
 import { RegisterComponent } from './register/register.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { AuthGuard } from './guards/auth.guard';
+import { ActionRequiredGuard } from './guards/action-required.guard';
 import { ShopComponent } from './shop/shop.component';
 
 
@@ -22,7 +23,7 @@ const routes: Routes = [
   { path: 'trainer', component: TrainerComponent},
   { path: 'admin', component: AdminComponent },
   { path: 'moves', component: MovesComponent },
-  { path: 'storage', component: StorageComponent },
+  { path: 'storage', component: StorageComponent, canDeactivate: [ActionRequiredGuard] },
   { path: 'pokemon', component: PokemonComponent },
   { path: 'trade', component: TradeComponent },
   { path: 'items', component: ItemsComponent },
