@@ -1,0 +1,12 @@
+<div id="dashboardContainer">
+    <div>
+        <h1>Party</h1>
+    </div>
+    <div>
+        <h1>Items</h1>
+        <div *ngFor="let item of data" class="displayItems" (click)="toMyitems()">
+            <img src='{{item["item"]["sprite"]}}' />
+            <p><strong>{{item["item"]["itemName"] | titlecase}}</strong>: <i>{{item["qty"]}}</i><p>
+        </div>
+    </div>
+</div>

@@ -27,3 +27,7 @@ button:hover {
     border-radius: 5px;
     transition: ease-in-out .3s;
 }
+p {
+    text-align: center;
+    font-size: 16px;
+}
