@@ -3,8 +3,8 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable, tap } from 'rxjs';
 import { TokenStorageService, TOKEN_KEY } from './token-storage.service';
+import { environment } from 'src/environments/environment';
 
-export const AUTH_API = 'http://localhost:8080/';
 const httpOptions = {
   headers: new HttpHeaders({
     'Content-Type': 'application/x-www-form-urlencoded',
@@ -24,7 +24,7 @@ export class AuthService {
   login(username: string, password: string): Observable<any> {
     return this.http
       .post<any>(
-        AUTH_API + 'login',
+        `${environment.apiUrl}/login`,
         new URLSearchParams({
           username,
           password,

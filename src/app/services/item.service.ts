@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Item } from '../models/item';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -18,11 +19,11 @@ export class ItemService {
   };
 
   getShopItems() {
-    return this.http.get("http://localhost:8080/items");
+    return this.http.get(`${environment.apiUrl}/items`);
   }
 
   addItemToShop(item: Item){
-    return this.http.post("http://localhost:8080/items", 
+    return this.http.post(`${environment.apiUrl}/items`, 
       {
         "apiId": item.id,
         "itemName": item.name,

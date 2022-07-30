@@ -1,8 +1,8 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
 import { Trainer } from '../models/trainer';
-import { AUTH_API } from './auth.service';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -20,11 +20,11 @@ export class TrainerService {
   constructor(private http: HttpClient) {}
 
   getTrainers(): Observable<Trainer[]> {
-    return this.http.get<Trainer[]>(AUTH_API + this.trainersUrl);
+    return this.http.get<Trainer[]>(`${environment.apiUrl}/${this.trainersUrl}`);
   }
 
   createTrainer(trainer: Trainer): Observable<any> {
-    return this.http.post(AUTH_API + this.trainersUrl, trainer, httpOptions);
+    return this.http.post(`${environment.apiUrl}/${this.trainersUrl}`, trainer, httpOptions);
   }
 
   getPokemonById(id: number): Observable<any> {
