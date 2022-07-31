@@ -5,7 +5,7 @@
                 <strong>My Trades</strong>
             </div>
             <div class="grid">
-                <div *ngFor="let trade of myTrades" class="trade" (click)="selectTrade(trade)">
+                <div *ngFor="let trade of myTrades" class="trade" (click)="selectTrade(trade)" [style]="{'background-color' : (accepted(trade) ? 'rgb(255, 229, 80)' : 'rgb(80, 211, 255)')}">
                     <div *ngIf="trade">
                         <img [src]="trade.listed.sprite.front">
                     </div>
@@ -21,6 +21,90 @@
                 <div *ngFor="let trade of otherTrades" class="trade" (click)="offerTrade(trade)">
                     <img *ngIf="trade" [src]="trade.listed.sprite.front">
                 </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="viewTrade" *ngIf="activeTrade">
+        <p>Viewing a trade</p>
+        <div *ngIf="activeTrade.offered">
+            <img [src]="activeTrade.offered.sprite.front">
+            <p>
+                <b>Lv</b> {{activeTrade.offered.level}}
+            </p>
+        </div>
+        <div>
+            <button (click)="reset()">Back</button>
+            <button (click)="confirmTrade()" *ngIf="!accepted(this.activeTrade)">Cancel Trade</button>
+            <button (click)="confirmTrade()" *ngIf="pending(this.activeTrade)">Browse Pokemon</button>
+            <button (click)="receiveFromTrade()" *ngIf="accepted(this.activeTrade)">Collect</button>
+        </div>
+    </div>
+
+    <div id="offerTrade" *ngIf="trading && offering">
+        <div slot="head">
+            <strong>Select a Pokemon</strong>
+        </div>
+        <div slot="content">
+            <div class="view">
+                <div class="leftsidebar">
+                    <div class="title">
+                        <strong>Party</strong>
+                    </div>
+                    <div class="party" *ngIf="pPokes && pPokes.length > 0">
+                        <div class="slot" *ngFor="let poke of pPokes" (click)="choosePokemon(poke)"
+                            [style]="canSelect(poke) ? '' : 'pointer-events: none'">
+                            <img [src]="poke.sprite.front"
+                                [style]="canSelect(poke) ? '' : 'opacity: 0.3'">
+                        </div>
+                    </div>
+                    <div *ngIf="selected">
+                        <h1>{{selected.nickname || selected.name | titlecase}}</h1>
+                        <img [src]="selected.sprite.front_a">
+                        <p>
+                            <b>Lv:</b> {{selected.level}}
+                            <br>
+                            <b>Type:</b> {{selected.type1 | titlecase}}{{hasType(selected.type2) ? ((', ' +
+                            selected.type2)
+                            |
+                            titlecase) : ''}}
+                            <br>
+                            <b>Weight:</b> {{selected.weight}}
+                            <br>
+                            <b>Height:</b> {{selected.height}}
+                            <br>
+                            <b>HP:</b> {{selected.hp}}/{{selected.stats.hp}}
+                            <br>
+                            <b>Att:</b> {{selected.stats.att}}
+                            <br>
+                            <b>Def:</b> {{selected.stats.def}}
+                            <br>
+                            <b>Sp Att:</b> {{selected.stats.satt}}
+                            <br>
+                            <b>Sp Def:</b> {{selected.stats.sdef}}
+                            <br>
+                            <b>Speed:</b> {{selected.stats.speed}}
+                        </p>
+                    </div>
+                </div>
+                <div class="storage">
+                    <div class="titlebar">
+                        <mat-icon class="clickable left" (click)="prev()">arrow_back_ios</mat-icon>
+                        <strong>{{storage.boxes[storage.activeIndex].name}}</strong>
+                        <mat-icon class="clickable right" (click)="next()">arrow_forward_ios</mat-icon>
+                    </div>
+                    <div class="box">
+                        <div class="slot" *ngFor="let poke of box" (click)="choosePokemon(poke)"
+                            [style]="canSelect(poke) ? '' : 'pointer-events: none'">
+                            <img class="contain" *ngIf="poke" [src]="poke.sprite.front"
+                                [style]="canSelect(poke) ? '' : 'opacity: 0.3'">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div slot="foot">
+                <button (click)="reset()">Cancel</button>
+                <button (click)="confirmTrade()">Confirm</button>
             </div>
         </div>
     </div>
@@ -85,74 +169,6 @@
             <div slot="foot">
                 <button (click)="reset()">Cancel</button>
                 <button (click)="selected ? selectPokemon() : message()">Select</button>
-            </div>
-        </div>
-    </div>
-
-    <div id="offerTrade" *ngIf="trading && offering">
-        <div slot="head">
-            <strong>Select a Pokemon</strong>
-        </div>
-        <div slot="content">
-            <div class="view">
-                <div class="leftsidebar">
-                    <div class="title">
-                        <strong>Party</strong>
-                    </div>
-                    <div class="party" *ngIf="pPokes && pPokes.length > 0">
-                        <div class="slot" *ngFor="let poke of pPokes" (click)="choosePokemon(poke)"
-                            [style]="activeTrade && canSelect(poke) ? '' : 'pointer-events: none'">
-                            <img [src]="poke.sprite.front"
-                                [style]="activeTrade && canSelect(poke) ? '' : 'opacity: 0.3'">
-                        </div>
-                    </div>
-                    <div *ngIf="selected">
-                        <h1>{{selected.nickname || selected.name | titlecase}}</h1>
-                        <img [src]="selected.sprite.front_a">
-                        <p>
-                            <b>Lv:</b> {{selected.level}}
-                            <br>
-                            <b>Type:</b> {{selected.type1 | titlecase}}{{hasType(selected.type2) ? ((', ' +
-                            selected.type2)
-                            |
-                            titlecase) : ''}}
-                            <br>
-                            <b>Weight:</b> {{selected.weight}}
-                            <br>
-                            <b>Height:</b> {{selected.height}}
-                            <br>
-                            <b>HP:</b> {{selected.hp}}/{{selected.stats.hp}}
-                            <br>
-                            <b>Att:</b> {{selected.stats.att}}
-                            <br>
-                            <b>Def:</b> {{selected.stats.def}}
-                            <br>
-                            <b>Sp Att:</b> {{selected.stats.satt}}
-                            <br>
-                            <b>Sp Def:</b> {{selected.stats.sdef}}
-                            <br>
-                            <b>Speed:</b> {{selected.stats.speed}}
-                        </p>
-                    </div>
-                </div>
-                <div class="storage">
-                    <div class="titlebar">
-                        <mat-icon class="clickable left" (click)="prev()">arrow_back_ios</mat-icon>
-                        <strong>{{storage.boxes[storage.activeIndex].name}}</strong>
-                        <mat-icon class="clickable right" (click)="next()">arrow_forward_ios</mat-icon>
-                    </div>
-                    <div class="box">
-                        <div class="slot" *ngFor="let poke of box" (click)="choosePokemon(poke)"
-                            [style]="activeTrade && canSelect(poke) ? '' : 'pointer-events: none'">
-                            <img class="contain" *ngIf="poke" [src]="poke.sprite.front"
-                                [style]="activeTrade && canSelect(poke) ? '' : 'opacity: 0.3'">
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div slot="foot">
-                <button (click)="reset()">Cancel</button>
-                <button (click)="confirmTrade()">Confirm</button>
             </div>
         </div>
     </div>
