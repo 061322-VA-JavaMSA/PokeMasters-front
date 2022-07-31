@@ -1,0 +1,3 @@
+#PokeMasters
+<hr>
+PokeMasters is an application that is all about being a Pokemon trainer. In this application, a user can register as a trainer and choose their starter Pokemon from a list. Once registered, a user is able to trade Pokemon, buy items and Pokemon, and make a custom party of up to six Pokemon as well as place and switch items from their storage box. The admin is able to get a list of items and Pokemon from the PokeApi and add it to the shop. The admin can also update the list of started Pokemon available to the users when they register.

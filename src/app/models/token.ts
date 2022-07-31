@@ -3,4 +3,5 @@ export interface Token {
     roles: string[]
     iss: string
     exp: number
+    id: number
 }
