@@ -18,7 +18,7 @@
                 <p>
                     <b>Lv:</b> {{selected.level}}
                     <br>
-                    <b>Type:</b> {{selected.type1 | titlecase}}{{selected.type2 != '' ? ((', ' + selected.type2) |
+                    <b>Type:</b> {{selected.type1 | titlecase}}{{hasType(selected.type2) ? ((', ' + selected.type2) |
                     titlecase) : ''}}
                     <br>
                     <b>Weight:</b> {{selected.weight}}
@@ -52,10 +52,10 @@
                 </div>
             </div>
         </div>
-        <img *ngIf="selected && swap" class="drag" [src]="selected.sprite.front_a" [ngStyle]="{'left': mouseX+'px', 'top': mouseY+'px'}">
     </div>
+    <div id="btnContainer">
+        <button (click)="addPokemon()">Add Pokemon</button>
+        <button (click)="swap && selected ? {} : switchMode();">{{label}}</button>
+        </div>
+        <img *ngIf="selected && swap" class="drag" [src]="selected.sprite.front_a" [ngStyle]="{'left': mouseX+'px', 'top': mouseY+'px'}">
 </main>
-<div id="btnContainer">
-<button (click)="addPokemon()">Add Pokemon</button>
-<button (click)="swap && selected ? {} : switchMode();">{{label}}</button>
-</div>

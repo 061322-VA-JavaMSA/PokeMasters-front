@@ -5,7 +5,9 @@ import { ComponentCanDeactivate } from '../guards/action-required.guard';
 import { Party } from '../models/party';
 import { Pokemon } from '../models/pokemon';
 import { Storage } from '../models/storage';
+import { Type } from '../models/type.enum';
 import { PokemonService } from '../services/pokemon.service';
+import { TokenStorageService } from '../services/token-storage.service';
 
 @Component({
   selector: 'app-storage',
@@ -15,8 +17,12 @@ import { PokemonService } from '../services/pokemon.service';
 export class StorageComponent implements OnInit, ComponentCanDeactivate {
   @HostListener('document:mousemove', ['$event'])
   onMousemove(event: any) {
-    this.mouseX = event.pageX;
-    this.mouseY = event.pageY;
+    this.mouseX = event.screenX;
+    this.mouseY = event.screenY - 100;
+  }
+
+  hasType(type: Type) {
+    return type == Type.NONE ? false : true;
   }
 
   storage!: Storage;
