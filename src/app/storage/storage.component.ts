@@ -25,11 +25,13 @@ export class StorageComponent implements OnInit, ComponentCanDeactivate {
     return type == Type.NONE ? false : true;
   }
 
-  storage!: Storage;
-  party!: Party;
-  box!: Pokemon[];
-  pPokes!: Pokemon[];
-  selected!: Pokemon;
+  storage: any;
+  boxes: any = [];
+  index: number = 0;
+  party: any;
+  box: any = [];
+  pPokes: any = [];
+  selected: any;
   swap: boolean = false;
   label: string = 'Select';
   pIndex: number = -1;
@@ -71,34 +73,6 @@ export class StorageComponent implements OnInit, ComponentCanDeactivate {
     this.label = this.swap ? 'Swap' : 'Select'
   }
 
-  /*
-  grabBox(index: number) {
-    this.bIndex = index;
-    this.selected = this.box[index];
-    delete this.box[index];
-  }
-
-  grabParty(index: number) {
-    this.pIndex = index;
-    this.selected = this.pPokes[index];
-    delete this.pPokes[index];
-  }
-
-  placeBox(index: number) {
-    this.box[this.bIndex] = this.box[index];
-    this.box[index] = this.selected;
-  }
-
-  placeParty(index: number) {
-    if (index > this.pPokes.length) {
-      this.pPokes.push(this.selected);
-    } else {
-      this.pPokes[this.pIndex] = this.pPokes[index];
-      this.pPokes[index] = this.selected;
-    }
-  }
-  */
-
   swapBox(index: number) {
     let temp = this.selected;
     this.selected = this.box[index];
@@ -117,7 +91,7 @@ export class StorageComponent implements OnInit, ComponentCanDeactivate {
       this.selected = this.pPokes[index];
       delete this.pPokes[index];
       let newP: Pokemon[] = [];
-      this.pPokes.forEach(p => {
+      this.pPokes.forEach((p: any) => {
         if (p) {
           newP.push(p);
         }
@@ -148,7 +122,7 @@ export class StorageComponent implements OnInit, ComponentCanDeactivate {
 
   loadParty() {
     this.pPokes = this.party.pokemon;
-    this.pPokes.forEach(p => {
+    this.pPokes.forEach((p: any) => {
       this.ps.getPokemon(p.id).subscribe(response => {
         p = response;
       })

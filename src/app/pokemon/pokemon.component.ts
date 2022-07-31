@@ -14,7 +14,7 @@ import { PokemonService } from '../services/pokemon.service';
 })
 export class PokemonComponent implements OnInit {
   pokemons: any[] = [];
-  pokemon!: Pokemon;
+  pokemon: any;
 
   constructor(private pokeServ: PokemonService, private http: HttpClient) {
   }
