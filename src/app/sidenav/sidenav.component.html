@@ -31,6 +31,16 @@
                     <mat-icon>catching_pokemon</mat-icon>
                     <span>Trade</span>
                 </button>
+                <button mat-button routerLinkActive="active" routerLink="myItems">
+                    <mat-icon>catching_pokemon</mat-icon>
+                    <span>My Items</span>
+                </button>
+                <button mat-button routerLinkActive="active" routerLink="shop">
+                    <mat-icon>catching_pokemon</mat-icon>
+                    <span>Shop</span>
+                </button>
+            </ng-template>
+            <ng-template #elseBlock>
                 <button mat-button routerLinkActive="active" routerLink="items">
                     <mat-icon>catching_pokemon</mat-icon>
                     <span>Items</span>
@@ -39,9 +49,6 @@
                     <mat-icon>catching_pokemon</mat-icon>
                     <span>Shop</span>
                 </button>
-            </ng-template>
-            <ng-template #elseBlock>
-                Add links here for ADMIN users
             </ng-template>
         </div>
         

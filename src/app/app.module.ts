@@ -26,6 +26,7 @@ import { ActionRequiredGuard } from './guards/action-required.guard';
 import { ModalModule } from './modal/modal.module';
 import { SidenavComponent } from './sidenav/sidenav.component';
 import { ReplacePipe } from './pipes/replace.pipe';
+import { MyItemsComponent } from './my-items/my-items.component';
 
 @NgModule({
   declarations: [
@@ -48,7 +49,8 @@ import { ReplacePipe } from './pipes/replace.pipe';
     ShopComponent,
     StorageComponent,
     SidenavComponent,
-    ReplacePipe
+    ReplacePipe,
+    MyItemsComponent
   ],
   imports: [
     BrowserModule,
