@@ -14,6 +14,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { AuthGuard } from './guards/auth.guard';
 import { ActionRequiredGuard } from './guards/action-required.guard';
 import { ShopComponent } from './shop/shop.component';
+import { MyItemsComponent } from './my-items/my-items.component';
 
 
 const routes: Routes = [
@@ -28,7 +29,8 @@ const routes: Routes = [
   { path: 'trade', component: TradeComponent },
   { path: 'items', component: ItemsComponent },
   { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
-  { path: 'shop', component: ShopComponent}
+  { path: 'shop', component: ShopComponent},
+  { path: 'myItems', component: MyItemsComponent }
 ];
 
 @NgModule({

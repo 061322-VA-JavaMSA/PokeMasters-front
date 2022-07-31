@@ -1,0 +1,15 @@
+<h1>My Items</h1>
+<table>
+    <tr>
+        <th></th>
+        <th>Item Name</th>
+        <th>Effect</th>
+        <th>Qty</th>
+    </tr>
+    <tr *ngFor="let item of data">
+        <td><img src='{{item["item"]["sprite"]}}' /></td>
+        <td>{{item["item"]["itemName"] | titlecase}}</td>
+        <td>{{item["item"]["effect"]}}</td>
+        <td>{{item["qty"]}}</td>
+    </tr>
+</table>

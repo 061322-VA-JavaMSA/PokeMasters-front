@@ -1,0 +1,22 @@
+.displayItems{
+    width: 150px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    cursor: pointer;
+    margin: 0 auto;
+}
+.displayItems p {
+    margin: auto 0;
+}
+#dashboardContainer {
+    width: 800px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: auto auto;
+}
+h1 {
+    font-weight: 700;
+    text-align: center;
+    margin: 20px;
+}

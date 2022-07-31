@@ -3,11 +3,11 @@ import { ItemService } from '../services/item.service';
 import { TokenStorageService } from '../services/token-storage.service';
 
 @Component({
-  selector: 'app-dashboard',
-  templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.css']
+  selector: 'app-my-items',
+  templateUrl: './my-items.component.html',
+  styleUrls: ['./my-items.component.css']
 })
-export class DashboardComponent implements OnInit {
+export class MyItemsComponent implements OnInit {
 
   token;
   data = [];
@@ -17,9 +17,8 @@ export class DashboardComponent implements OnInit {
       this.data = data;
     })
   }
+
   ngOnInit(): void {
   }
-  toMyitems(){
-    window.location.href = "myItems";
-  }
+
 }
