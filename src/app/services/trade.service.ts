@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { Trade } from '../models/trade';
+import { TokenStorageService } from './token-storage.service';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -13,17 +14,38 @@ const httpOptions = {
 })
 export class TradeService {
 
-  currentTrade!: Trade;
-  
-  constructor(private http: HttpClient) { }
+  trades = [];
 
-  createTrade(trade: Trade): Observable<Trade> {
-      return this.http.post(`${environment.apiUrl}/trades`,
-        trade,
-        httpOptions).pipe(
-          map(
-            response => response as Trade
-          )
-        )
-    }
+  constructor(private http: HttpClient, private token: TokenStorageService) {}
+
+  createTrade(trade: Trade) {
+    let id = this.token.getDecodedAccessToken()?.id;
+    return this.http.post(`${environment.apiUrl}/trades/trainer/${id}`,
+      trade,
+      httpOptions);
+  }
+
+  getTrade(id: number) {
+    return this.http.get(`${environment.apiUrl}/trades/${id}`);
+  }
+
+  updateTrade(trade: Trade) {
+    return this.http.put(`${environment.apiUrl}/trades`,
+      trade,
+      httpOptions);
+  }
+
+  deleteTrade(trade: Trade): void {
+    this.http.delete(`${environment.apiUrl}/trades/${trade.id}`);
+  }
+
+  getOwnedTrades() {
+    let id = this.token.getDecodedAccessToken()?.id;
+    return this.http.get(`${environment.apiUrl}/trades/trainer/${id}`);
+  }
+
+  getAvailableTrades() {
+    let id = this.token.getDecodedAccessToken()?.id;
+    return this.http.get(`${environment.apiUrl}/trades/trainer/!${id}`);
+  }
 }

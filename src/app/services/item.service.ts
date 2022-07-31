@@ -38,4 +38,19 @@ export class ItemService {
       }
     });
   }
+
+  addOrUpdate(tid: number, iid:  number) {
+    return this.http.post("http://localhost:8080/trainer-items", {
+      "trainerId": tid,
+      "itemId": iid
+    }, {
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+  }
+
+  getTrainerItems(id: number) {
+    return this.http.get(`http://localhost:8080/trainer-items/${id}`);
+  }
 }

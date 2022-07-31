@@ -5,7 +5,9 @@ import { ComponentCanDeactivate } from '../guards/action-required.guard';
 import { Party } from '../models/party';
 import { Pokemon } from '../models/pokemon';
 import { Storage } from '../models/storage';
+import { Type } from '../models/type.enum';
 import { PokemonService } from '../services/pokemon.service';
+import { TokenStorageService } from '../services/token-storage.service';
 
 @Component({
   selector: 'app-storage',
@@ -15,15 +17,21 @@ import { PokemonService } from '../services/pokemon.service';
 export class StorageComponent implements OnInit, ComponentCanDeactivate {
   @HostListener('document:mousemove', ['$event'])
   onMousemove(event: any) {
-    this.mouseX = event.pageX;
-    this.mouseY = event.pageY;
+    this.mouseX = event.screenX;
+    this.mouseY = event.screenY - 100;
   }
 
-  storage!: Storage;
-  party!: Party;
-  box!: Pokemon[];
-  pPokes!: Pokemon[];
-  selected!: Pokemon;
+  hasType(type: Type) {
+    return type == Type.NONE ? false : true;
+  }
+
+  storage: any;
+  boxes: any = [];
+  index: number = 0;
+  party: any;
+  box: any = [];
+  pPokes: any = [];
+  selected: any;
   swap: boolean = false;
   label: string = 'Select';
   pIndex: number = -1;
@@ -65,34 +73,6 @@ export class StorageComponent implements OnInit, ComponentCanDeactivate {
     this.label = this.swap ? 'Swap' : 'Select'
   }
 
-  /*
-  grabBox(index: number) {
-    this.bIndex = index;
-    this.selected = this.box[index];
-    delete this.box[index];
-  }
-
-  grabParty(index: number) {
-    this.pIndex = index;
-    this.selected = this.pPokes[index];
-    delete this.pPokes[index];
-  }
-
-  placeBox(index: number) {
-    this.box[this.bIndex] = this.box[index];
-    this.box[index] = this.selected;
-  }
-
-  placeParty(index: number) {
-    if (index > this.pPokes.length) {
-      this.pPokes.push(this.selected);
-    } else {
-      this.pPokes[this.pIndex] = this.pPokes[index];
-      this.pPokes[index] = this.selected;
-    }
-  }
-  */
-
   swapBox(index: number) {
     let temp = this.selected;
     this.selected = this.box[index];
@@ -111,7 +91,7 @@ export class StorageComponent implements OnInit, ComponentCanDeactivate {
       this.selected = this.pPokes[index];
       delete this.pPokes[index];
       let newP: Pokemon[] = [];
-      this.pPokes.forEach(p => {
+      this.pPokes.forEach((p: any) => {
         if (p) {
           newP.push(p);
         }
@@ -142,7 +122,7 @@ export class StorageComponent implements OnInit, ComponentCanDeactivate {
 
   loadParty() {
     this.pPokes = this.party.pokemon;
-    this.pPokes.forEach(p => {
+    this.pPokes.forEach((p: any) => {
       this.ps.getPokemon(p.id).subscribe(response => {
         p = response;
       })

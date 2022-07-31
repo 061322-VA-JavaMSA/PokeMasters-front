@@ -31,4 +31,17 @@ export class TrainerService {
     return this.http.get<Trainer[]>(`https://pokeapi.co/api/v2/pokemon/${id}`);
   }
 
+  getTraienrById(id: number) {
+    return this.http.get(`http://localhost:8080/trainers/${id}`);
+  }
+
+  updateTrainer(id: number, money: number) {
+    return this.http.put(`http://localhost:8080/trainers/${id}`, {
+      "money": money
+    }, {
+      headers: {
+        "Content-Type": "application/json"
+      }
+    });
+  }
 }

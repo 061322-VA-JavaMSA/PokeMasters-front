@@ -6,7 +6,7 @@
 </ul> -->
 <div *ngIf="item == null" id="itemsContainer">
     <div *ngFor="let item of data" (click)='getItems(item["url"])' class="item">
-        {{item["name"] | titlecase}}
+        {{item["name"] | replace:'-':' ' | titlecase}}
     </div>
 </div>
 
@@ -20,7 +20,7 @@
         <img src="{{item.sprite}}" />
         <ul>
             <li><strong>API ID:</strong> {{item.id}}</li>
-            <li><strong>Name:</strong> {{item.name | titlecase}}</li>
+            <li><strong>Name:</strong> {{item.name | replace:'-':' ' | titlecase}}</li>
             <li><strong>Price:</strong> {{item.cost}}</li>
             <li><strong>Effect:</strong> {{item.effect}}</li>
         </ul>

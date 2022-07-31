@@ -1,4 +1,5 @@
 <h1>Shop</h1>
+<p><strong>Money: </strong>{{money}}</p>
 <table>
     <tr>
         <th></th>
@@ -11,6 +12,6 @@
         <td>{{item["itemName"] | titlecase}}</td>
         <td>{{item["price"]}}</td>
         <td>{{item["effect"]}}</td>
-        <td><button>Buy</button></td>
+        <td><button (click)="buyItem(item)">Buy</button></td>
     </tr>
 </table>

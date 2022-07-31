@@ -4,35 +4,45 @@
     cursor: pointer;
 }
 
-main {
-    margin: 0 auto;
-    padding: 2em;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
+#mainView {
+    margin: 1em auto auto auto;
+    max-width: 80%;
+    display: grid;
+    grid-gap: 2em;
+    grid-template-columns: repeat(4, 1fr);
+}
+
+#mainView > div {
+    border-radius: 5px;
+    background-color: rgba(173, 216, 230, 0.3);
 }
 
 .grid {
-    display: flex;
-    justify-content: space-between;
-    flex-direction: row;
-    flex-wrap: wrap;
+    display: grid;
+    padding: 1em;
+    grid-gap: 1em;
 }
+
 .trade {
-    flex: 1;
-    background-color: rgb(131, 218, 255);
+    background-color: rgb(80, 211, 255);
     border-radius: 10px;
-    margin: 0.5em;
+    width: 100%;
 }
 
-#trainerTrades .trade {
-    flex-basis: 90%;
-    padding-top: 90%;
+#trainerTrades {
+    grid-column: 1;
 }
 
-#otherTrades .trade {
-    flex-basis: 30%;
-    padding-top: 30%;
+#trainerTrades .grid {
+    grid-template-columns: repeat(1, 1fr);
+}
+
+#otherTrades {
+    grid-column: 2 / span 3;
+}
+
+#otherTrades .grid {
+    grid-template-columns: repeat(3, 1fr);
 }
 
 .view {
@@ -107,7 +117,7 @@ strong {
 
 .slot img {
     margin-top: -100%;
-    object-fit: cover;
+    object-fit: contain;
 }
 
 .party {
@@ -128,7 +138,7 @@ strong {
 }
 
 .slot:hover {
-    cursor: grabbing;
+    cursor: pointer;
     background-color: rgba(174, 255, 0, 0.1);
 }
 
@@ -154,16 +164,21 @@ strong {
     pointer-events: none;
 }
 
-#newTradeModal {
-    width: 40%;
-}
-
 button {
-    width: 100px;
-    height: 30px;
-    margin: 25px;
     background-color: #3f51b5;
     color: white;
     border-radius: 5px;
     border: none;
+    padding: 1em;
+}
+
+#newTradeButton {
+    width: 100%;
+    grid-column: 1;
+}
+
+#form {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }

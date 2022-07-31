@@ -1,11 +1,14 @@
+import { Move } from "./move";
 import { Nature } from "./nature.enum";
 import { Trainer } from "./trainer";
+import { Type } from "./type.enum";
 
 export class Pokemon {
     public id: number;
     public apiId: number;
     public name: string;
     public nickname: string;
+    public moves: Move[];
     public sprite: {
         front: string,
         back: string,
@@ -49,18 +52,19 @@ export class Pokemon {
         speed: number,
     };
     public baseExp: number;
-    public type1: string;
-    public type2: string;
+    public type1: Type;
+    public type2: Type;
     public height: number;
     public weight: number;
     public shiny: boolean;
     public trainer: Trainer;
     public ot: Trainer;
-    constructor(id: number, apiId: number, name: string, nickname: string, sprite: any, nature: Nature, hp: number, level: number, exp: number, stats: any, base: any, iv: any, ev: any, baseExp: number, type1: string, type2: string, height: number, weight: number, shiny: boolean, trainer: Trainer, ot: Trainer) {
+    constructor(id: number, apiId: number, name: string, nickname: string, moves: Move[], sprite: any, nature: Nature, hp: number, level: number, exp: number, stats: any, base: any, iv: any, ev: any, baseExp: number, type1: Type, type2: Type, height: number, weight: number, shiny: boolean, trainer: Trainer, ot: Trainer) {
         this.id = id;
         this.apiId = apiId;
         this.name = name;
         this.nickname = nickname;
+        this.moves = moves;
         this.sprite = sprite;
         this.nature = nature;
         this.hp = hp;
@@ -80,10 +84,4 @@ export class Pokemon {
         this.ot = ot;
     }
 
-}
-
-export enum Gender {
-    MALE = '♂',
-    FEMALE = '♀',
-    NONE = ''
 }
