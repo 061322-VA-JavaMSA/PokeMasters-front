@@ -40,7 +40,7 @@ export class ItemService {
   }
 
   addOrUpdate(tid: number, iid:  number) {
-    return this.http.post("http://localhost:8080/trainer-items", {
+    return this.http.post(`${environment.apiUrl}/trainer-items`, {
       "trainerId": tid,
       "itemId": iid
     }, {
@@ -51,6 +51,6 @@ export class ItemService {
   }
 
   getTrainerItems(id: number) {
-    return this.http.get(`http://localhost:8080/trainer-items/${id}`);
+    return this.http.get(`${environment.apiUrl}/trainer-items/${id}`);
   }
 }
