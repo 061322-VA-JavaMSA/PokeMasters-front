@@ -1,0 +1,22 @@
+.example-card {
+    width: 400px;
+}
+
+.example-header-image {
+    background-image: url('https://www.nicepng.com/png/detail/201-2011813_pokemon-trainer-red-render-by-oxeyclean-d4xlibs-1.png');
+    background-size: cover;
+}
+
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 20px;
+}
+
+h1 {
+    font-weight: 700;
+    text-align: center;
+    margin: 20px;
+}
