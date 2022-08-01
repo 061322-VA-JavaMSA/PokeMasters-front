@@ -20,7 +20,7 @@ export class LoginComponent implements OnInit {
     console.log(form);
 
     this.authService
-      .login(username, password)
+      .login(username, password, true)
       .pipe(
         catchError((e) => {
           this.errorInfo.error = true;

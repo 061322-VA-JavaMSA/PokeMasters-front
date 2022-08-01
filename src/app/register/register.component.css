@@ -12,8 +12,26 @@
     width: 350px;
 }
 
+.starter-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    padding: 1em;
+    width: 400px;
+}
+
 h1 {
     text-align: center;
+}
+
+.starter {
+    border-radius: 5px;
+    padding: 1em;
+}
+
+.starter:hover {
+    cursor: pointer;
+    border: .5em #3f51b5 solid;
 }
 
 .error {

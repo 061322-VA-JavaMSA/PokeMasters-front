@@ -1,5 +1,5 @@
 <div class="register-container">
-    <div>
+    <div *ngIf="!registered">
         <h1>Register for an account</h1>
         <form class="form-container" #registerForm="ngForm" (ngSubmit)="onSubmit(registerForm)">
             <mat-form-field appearance="outline">
@@ -20,5 +20,30 @@
             <button mat-raised-button color="primary" [disabled]="registerForm.invalid">Register</button>
         </form>
         <div *ngIf="errorInfo.error" class="error">{{errorInfo.message}}</div>
+    </div>
+    <div *ngIf="registered && !pick">
+        <p>Your trainer account was created successfully. Time to choose your very first Pokemon!</p>
+        <br>
+        <button (click)="continue()">Continue</button>
+    </div>
+    <div *ngIf="pick">
+        <h1>Choose your starter Pokemon</h1>
+        <div class="starter-container">
+            <div class="starter" (click)="chooseStarter(1)">
+                <img src="../../assets/images/1.gif">
+                <br>
+                <strong>Bulbasaur</strong>
+            </div>
+            <div class="starter" (click)="chooseStarter(4)">
+                <img src="../../assets/images/4.gif">
+                <br>
+                <strong>Charmander</strong>
+            </div>
+            <div class="starter" (click)="chooseStarter(7)">
+                <img src="../../assets/images/7.gif">
+                <br>
+                <strong>Squirtle</strong>
+            </div>
+        </div>
     </div>
 </div>

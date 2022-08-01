@@ -21,7 +21,7 @@ export class AuthService {
     private router: Router,
   ) {}
 
-  login(username: string, password: string): Observable<any> {
+  login(username: string, password: string, redirect: boolean): Observable<any> {
     return this.http
       .post<any>(
         AUTH_API + 'login',
@@ -35,7 +35,7 @@ export class AuthService {
         tap((body) => {
             this.tokenService.saveToken(body[TOKEN_KEY])
             
-            if (this.isLoggedIn()) {
+            if (this.isLoggedIn() && redirect) {
               this.router.navigate(['dashboard']);
             }
         })
