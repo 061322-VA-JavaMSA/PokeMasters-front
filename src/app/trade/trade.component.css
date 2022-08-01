@@ -4,6 +4,11 @@
     cursor: pointer;
 }
 
+main {
+    display: flex;
+    justify-content: center;
+}
+
 #mainView {
     margin: 1em auto auto auto;
     max-width: 80%;
@@ -12,7 +17,7 @@
     grid-template-columns: repeat(4, 1fr);
 }
 
-#mainView > div {
+#mainView>div {
     border-radius: 5px;
     background-color: rgba(173, 216, 230, 0.3);
 }
@@ -49,7 +54,7 @@
     margin: 0 auto;
     display: grid;
     grid-template-columns: repeat(8, 1fr);
-    max-width: 60%;
+    max-width: 100%;
 }
 
 .leftsidebar {
@@ -181,4 +186,42 @@ button {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    text-align: center;
+}
+
+#submitTrade, #viewTrade {
+    max-width: 40%;
+    height: 40%;
+}
+
+#offerTrade, #newTrade {
+    width: 60%;
+}
+
+.head {
+    padding: 1em;
+    border-radius: 5px;
+    background: #3f51b5;
+    color: #fff;
+    margin: 2em 0;
+}
+
+.foot {
+    width: 100%;
+    display: flex;
+    justify-content: right;
+}
+
+.foot button {
+    margin: 2em;
+}
+
+input {
+    padding: 1em;
+    margin: 1em;
+}
+
+hr {
+    width: 60%;
+    color: rgba(63, 81, 181, 0.7);
 }

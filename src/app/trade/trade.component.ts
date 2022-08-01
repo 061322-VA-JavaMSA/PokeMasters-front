@@ -16,6 +16,7 @@ export class TradeComponent implements OnInit {
 
   trading = false;
   offering = false;
+  viewTrade = false;
   storage: any;
   party: any;
   box: any = [];
@@ -30,7 +31,8 @@ export class TradeComponent implements OnInit {
 
 
   constructor(private modalService: ModalService, private ts: TradeService, private ps: PokemonService, private token: TokenStorageService) {
-    this.refresh();
+    this.getMyTrades();
+    this.getOtherTrades();
   }
 
   ngOnInit(): void {
@@ -38,61 +40,61 @@ export class TradeComponent implements OnInit {
 
   selectTrade(trade: Trade) {
     this.activeTrade = trade;
-    this.offering = false;
+    this.viewTrade = true;
   }
 
-pending(trade: Trade) {
-  return trade.status == Status.PENDING ? true : false;
-}
+  pending(trade: Trade) {
+    return trade.status == Status.PENDING ? true : false;
+  }
 
-accepted(trade: Trade) {
-  return trade.status == Status.ACCEPTED ? true : false;
-}
+  accepted(trade: Trade) {
+    return trade.status == Status.ACCEPTED ? true : false;
+  }
 
   newTrade() {
     this.offering = false;
     this.trading = true;
+    this.getParty();
+    this.getStorage();
   }
 
   offerTrade(trade: any) {
     this.activeTrade = trade;
     this.offering = true;
     this.trading = true;
+    this.getParty();
+    this.getStorage();
   }
 
   confirmTrade() {
     this.activeTrade.offered = this.selected;
     this.ts.updateTrade(this.activeTrade).subscribe();
-    this.removePokemon(this.selected);
-    if (this.pPokes.length < 6) {
-      this.pPokes.push(this.activeTrade.listed);
-      this.saveParty();
-    } else {
-      this.box.push(this.activeTrade.listed);
-      this.saveBox();
-      this.saveStorage();
-    }
-    this.refresh();
+    this.otherTrades.splice(this.otherTrades.indexOf(this.activeTrade));
+    // this.getOtherTrades();
+    // this.refresh();
     this.reset();
   }
 
-  receiveFromTrade() {
-      this.ts.updateTrade(this.activeTrade).subscribe();
-      this.refresh();
-      this.reset();
+  save() {
+    this.saveParty();
+    this.saveBox()
+    this.saveStorage();
   }
 
   cancelTrade() {
     if (this.activeTrade.status == Status.PENDING) {
       this.ts.deleteTrade(this.activeTrade).subscribe();
-      this.refresh();
+      this.myTrades.splice(this.myTrades.indexOf(this.activeTrade));
+      // this.getMyTrades();
+      this.reset();
     }
   }
 
-  refresh() {
-    this.getParty();
-    this.getStorage();
-    this.getTrades();
+  receiveFromTrade() {
+    this.ts.updateTrade(this.activeTrade).subscribe();
+    this.myTrades.splice(this.myTrades.indexOf(this.activeTrade));
+    // this.getMyTrades();
+    this.reset();
   }
 
   selectPokemon() {
@@ -123,31 +125,35 @@ accepted(trade: Trade) {
     this.selected = null;
     this.trading = false;
     this.selPoke = null;
+    this.viewTrade = false;
   }
 
   message() {
     alert("You haven't selected a pokemon!");
   }
 
-  getTrades() {
-    this.ts.getOwnedTrades().subscribe((data: any) => {
-      console.warn(data);
-      this.myTrades = data;
-      this.myTrades.forEach((trade:any) => {
-        this.ts.getTrade(trade.id).subscribe((data: any) => {
-          trade = data;
-        })
-      })
-    })
+  getOtherTrades() {
     this.ts.getAvailableTrades().subscribe((data: any) => {
       console.warn(data);
       this.otherTrades = data;
-      this.otherTrades.forEach((trade:any) => {
+      this.otherTrades.forEach((trade: any) => {
         this.ts.getTrade(trade.id).subscribe((data: any) => {
           trade = data;
         })
       })
     })
+  }
+
+  getMyTrades() {
+    this.ts.getOwnedTrades().subscribe((data: any) => {
+      console.warn(data);
+      this.myTrades = data;
+      this.myTrades.forEach((trade: any) => {
+        this.ts.getTrade(trade.id).subscribe((data: any) => {
+          trade = data;
+        })
+      })
+    }) 
   }
 
   getPokemon(p: any) {
@@ -158,11 +164,16 @@ accepted(trade: Trade) {
 
   createTrade() {
     let newTrade: Trade = new Trade(-1, Status.PENDING, this.selPoke, null as unknown as Pokemon, this.pokeId, this.range, this.selected.trainer);
-    this.ts.createTrade(newTrade).subscribe(data => {
-      this.myTrades.push(data);
+    this.ts.createTrade(newTrade).subscribe(trade => {
+      this.myTrades.push(trade);
     });
-    this.removePokemon(this.selPoke);
-    this.getTrades();
+
+    // this.removePokemon(this.selPoke);
+    // this.saveParty();
+    // this.saveBox();
+    // this.saveStorage();
+    // this.getParty();
+    // this.getStorage();
     this.reset();
   }
 
@@ -171,11 +182,8 @@ accepted(trade: Trade) {
     if (i == -1) {
       i = this.box.indexOf(poke);
       delete this.box[i];
-      this.saveBox();
-      this.saveStorage();
     } else {
       delete this.pPokes[i];
-      this.saveParty();
     }
   }
 
@@ -192,14 +200,14 @@ accepted(trade: Trade) {
     }
   }
 
-  loadParty() {
-    this.pPokes = this.party.pokemon;
-    this.pPokes.forEach((p: any) => {
-      this.ps.getPokemon(p.id).subscribe(response => {
-        p = response;
-      })
-    })
-  }
+  // loadParty() {
+  //   this.pPokes = this.party.pokemon;
+  //   this.pPokes.forEach((p: any) => {
+  //     this.ps.getPokemon(p.id).subscribe(response => {
+  //       p = response;
+  //     })
+  //   })
+  // }
 
   next() {
     this.storage.activeIndex += 1;
@@ -222,20 +230,21 @@ accepted(trade: Trade) {
   getParty() {
     this.ps.getParty().subscribe(data => {
       this.party = data;
-      this.loadParty();
+      this.pPokes = this.party.pokemon;
+      // this.loadParty();
     })
   }
 
   saveParty() {
     this.party.pokemon = [];
-    this.pPokes.forEach((p:any) => {
+    this.pPokes.forEach((p: any) => {
       if (p) {
         this.party.pokemon.push(p);
       }
     });;
     this.ps.saveParty(this.party).subscribe(data => {
       this.party = data;
-      this.loadParty();
+      // this.loadParty();
     })
   }
 

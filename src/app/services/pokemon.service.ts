@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { Party } from '../models/party';
+import { Pokemon } from '../models/pokemon';
 import { Box, Storage } from '../models/storage';
 import { TokenStorageService } from './token-storage.service';
 
@@ -65,6 +66,10 @@ export class PokemonService {
 
   saveParty(p: Party) {
     return this.http.put(`${environment.apiUrl}/party`, p, httpOptions);
+  }
+
+  savePokemon(p: Pokemon) {
+    return this.http.put(`${environment.apiUrl}/pokemon/${p.id}`, p, httpOptions);
   }
 
 }
