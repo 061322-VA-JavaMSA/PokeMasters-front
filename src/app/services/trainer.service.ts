@@ -32,16 +32,20 @@ export class TrainerService {
   }
 
   getTraienrById(id: number) {
-    return this.http.get(`http://localhost:8080/trainers/${id}`);
+    return this.http.get(`${environment.apiUrl}/trainers/${id}`);
   }
 
   updateTrainer(id: number, money: number) {
-    return this.http.put(`http://localhost:8080/trainers/${id}`, {
+    return this.http.put(`${environment.apiUrl}/trainers/${id}`, {
       "money": money
     }, {
       headers: {
         "Content-Type": "application/json"
       }
     });
+  }
+
+  deleteTrainerById(id: number) {
+    return this.http.delete(`${environment.apiUrl}/trainers/${id}`);
   }
 }

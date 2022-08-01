@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { Role } from '../models/role.enum';
 import { Trainer } from '../models/trainer';
 import { TrainerService } from '../services/trainer.service';
 
@@ -9,10 +11,8 @@ import { TrainerService } from '../services/trainer.service';
 })
 export class TrainerComponent implements OnInit {
   trainers: Trainer[] = [];
-  pokemon: any
-  id: number = 0
 
-  constructor(private trainerService: TrainerService) { }
+  constructor(private trainerService: TrainerService, private router: Router) { }
 
   ngOnInit(): void {
     this.getTrainers()
@@ -20,13 +20,15 @@ export class TrainerComponent implements OnInit {
 
   getTrainers(): void {
     this.trainerService.getTrainers().subscribe(
-      trainers => this.trainers = trainers
+      trainers => this.trainers = trainers.filter(t => t.role == Role.TRAINER)
     );
   }
 
-  getPokemonById(id: number): void {
-    this.trainerService.getPokemonById(id).subscribe(
-      pokemon => this.pokemon = pokemon
+  deleteTrainer(id: number): void {
+    this.trainerService.deleteTrainerById(id).subscribe(
+      _ => {
+        this.ngOnInit()
+      }
     )
   }
 

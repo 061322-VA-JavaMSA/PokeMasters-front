@@ -6,6 +6,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatDividerModule } from '@angular/material/divider';
+import { MatCardModule } from '@angular/material/card';
 
 const materialModules = [
   MatIconModule,
@@ -14,7 +15,8 @@ const materialModules = [
   MatFormFieldModule,
   MatInputModule,
   MatSidenavModule,
-  MatDividerModule
+  MatDividerModule,
+  MatCardModule
 ];
 
 @NgModule({

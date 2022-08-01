@@ -1,13 +1,13 @@
-<h2>Trainers</h2>
-<ul class="heroes">
-    <li *ngFor="let trainer of trainers">
-    <div>
-      <span class="id">{{trainer.id}}</span>
-        {{trainer | json}}
-    </div>
-  </li>
-</ul>
-<input id="pokemon-id" [(ngModel)]="id" placeholder="pokemon id">
-<button type="button" class="clear"
-          (click)="getPokemonById(id)">Find</button>
-<div>{{pokemon | json}}</div>
+<div class="container">
+  <h1>Trainers</h1>
+  <mat-card class="example-card" *ngFor="let trainer of trainers">
+    <mat-card-header>
+      <div mat-card-avatar class="example-header-image"></div>
+      <mat-card-title>{{trainer.username}}</mat-card-title>
+      <mat-card-subtitle>{{trainer.displayName}}</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-actions>
+      <button mat-button color="warn" (click)="deleteTrainer(trainer.id)" disabled>DELETE</button>
+    </mat-card-actions>
+  </mat-card>
+</div>
