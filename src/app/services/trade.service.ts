@@ -35,8 +35,8 @@ export class TradeService {
       httpOptions);
   }
 
-  deleteTrade(trade: Trade): void {
-    this.http.delete(`${environment.apiUrl}/trades/${trade.id}`);
+  deleteTrade(trade: Trade) {
+    return this.http.delete(`${environment.apiUrl}/trades/${trade.id}`);
   }
 
   getOwnedTrades() {
