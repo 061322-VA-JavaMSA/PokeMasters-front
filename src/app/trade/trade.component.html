@@ -1,5 +1,5 @@
 <main>
-    <div id="mainView" *ngIf="!trading">
+    <div id="mainView" *ngIf="!trading && !offering && !viewTrade">
         <div id="trainerTrades">
             <div class="title">
                 <strong>My Trades</strong>
@@ -13,7 +13,7 @@
                 <button id="newTradeButton" (click)="newTrade()">Make a trade request</button>
             </div>
         </div>
-        <div id="otherTrades" *ngIf="!activeTrade">
+        <div id="otherTrades">
             <div class="title">
                 <strong>Browse Trades</strong>
             </div>
@@ -25,7 +25,7 @@
         </div>
     </div>
 
-    <div id="viewTrade" *ngIf="activeTrade">
+    <div id="viewTrade" *ngIf="viewTrade">
         <p>Viewing a trade</p>
         <div *ngIf="activeTrade.offered">
             <img [src]="activeTrade.offered.sprite.front">
@@ -35,14 +35,13 @@
         </div>
         <div>
             <button (click)="reset()">Back</button>
-            <button (click)="confirmTrade()" *ngIf="!accepted(this.activeTrade)">Cancel Trade</button>
-            <button (click)="confirmTrade()" *ngIf="pending(this.activeTrade)">Browse Pokemon</button>
+            <button (click)="cancelTrade()" *ngIf="!accepted(this.activeTrade)">Cancel Trade</button>
             <button (click)="receiveFromTrade()" *ngIf="accepted(this.activeTrade)">Collect</button>
         </div>
     </div>
 
-    <div id="offerTrade" *ngIf="trading && offering">
-        <div slot="head">
+    <div id="offerTrade" *ngIf="offering">
+        <div class="head">
             <strong>Select a Pokemon</strong>
         </div>
         <div slot="content">
@@ -102,7 +101,7 @@
                     </div>
                 </div>
             </div>
-            <div slot="foot">
+            <div class="foot">
                 <button (click)="reset()">Cancel</button>
                 <button (click)="confirmTrade()">Confirm</button>
             </div>
@@ -110,7 +109,7 @@
     </div>
 
     <div id="newTrade" *ngIf="trading && !offering && !selPoke">
-        <div slot="head">
+        <div class="head">
             <strong>Select a Pokemon</strong>
         </div>
         <div slot="content">
@@ -166,24 +165,28 @@
                     </div>
                 </div>
             </div>
-            <div slot="foot">
+            <div class="foot">
                 <button (click)="reset()">Cancel</button>
                 <button (click)="selected ? selectPokemon() : message()">Select</button>
             </div>
         </div>
     </div>
 
-    <div id="submitTrade" *ngIf="trading && !offering && selPoke">
-        <div slot="head">
+    <div id="submitTrade" *ngIf="trading && selPoke">
+        <div class="head">
             <strong>Submit a trade request</strong>
         </div>
         <div id="form" slot="content">
             <img [src]="selected.sprite.front" style="width: fit-content">
-            <input type="number" [(ngModel)]="pokeId" placeholder="Enter the number of the desired Pokemon" required>
-            <input type="number" [(ngModel)]="range" placeholder="Enter the acceptable range for the Pokemon's level"
-                required>
+            <span><b>Lv.</b> {{selected.level}}</span>
+            <strong>Requirements for trade</strong>
+            <hr>
+            <label>Enter the dex number of the desired Pokemon</label>
+            <input type="number" [(ngModel)]="pokeId" required>
+            <label>Enter the acceptable difference in levels</label>
+            <input type="number" [(ngModel)]="range" required>
         </div>
-        <div slot="foot">
+        <div class="foot">
             <button (click)="reset()">Cancel</button>
             <button (click)="createTrade()">Submit</button>
         </div>
